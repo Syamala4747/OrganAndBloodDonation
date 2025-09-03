@@ -11,7 +11,6 @@ import DonorSupport from './pages/donor/DonorSupport';
 import HospitalHome from './pages/hospital/HospitalHome';
 import HospitalLivingDonors from './pages/hospital/HospitalLivingDonors';
 import AdminHome from './pages/admin/AdminHome';
-// ...existing code...
 import OrgAfterDeathDonors from './pages/organization/OrgAfterDeathDonors';
 
 function App() {
@@ -30,7 +29,6 @@ function App() {
   <Route path="/hospital/*" element={<HospitalHome />} />
         <Route path="/admin/*" element={<AdminHome />} />
   <Route path="/organization/after-death-donors" element={<OrgAfterDeathDonors />} />
-// ...existing code...
       </Routes>
     </Router>
   );

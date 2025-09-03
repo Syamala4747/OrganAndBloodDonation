@@ -214,11 +214,11 @@ export async function registerOrganDonation(req, res) {
 export async function getOrganDonationStatus(req, res) {
   try {
     const { email } = req.query;
-    const donor = await Donor.findOne({ email });
-    if (!donor) {
+    const organDonation = await OrganDonation.findOne({ email });
+    if (!organDonation) {
       return res.status(404).json({ isRegistered: false });
     }
-    res.json({ isRegistered: true, ...donor._doc });
+    res.json({ isRegistered: true, ...organDonation._doc });
   } catch (err) {
     res.status(500).json({ success: false, error: err.message });
   }

@@ -29,7 +29,7 @@ import chatbotRoutes from './routes/chatbotRoutes.js';
 app.use('/api/auth', authRoutes);
 
 app.use('/api/donor', donorRoutes);
-app.use('/api/donor', organDonationRoutes);
+app.use('/api/organ-donation', organDonationRoutes);
 app.use('/api/hospital', hospitalRoutes);
 app.use('/api/organization', organizationRoutes);
 app.use('/api/admin', adminRoutes);

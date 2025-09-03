@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import DonorSidebar from '../../components/Sidebar/DonorSidebar';
 import Chatbot from '../../components/Chatbot';
 import './DonorHome.css';
 
 const DonorHome = () => {
+  // Registration status state
+  const [isRegistered, setIsRegistered] = useState(false);
+  const [loadingStatus, setLoadingStatus] = useState(true);
   // Modal state and handlers
   const [showModal, setShowModal] = React.useState(false);
   const [form, setForm] = React.useState({
@@ -35,6 +38,32 @@ const DonorHome = () => {
   const medicalInputRef = React.useRef();
   const inputStyle = {width:'100%', padding:'0.7rem 1rem', borderRadius:'1.2rem', border:'1px solid #e5e7eb', background:'#f3f4f6', fontSize:'1rem', marginBottom:'0.8rem', boxSizing:'border-box'};
   const donationTypeLabel = active => ({flex:1, background:active?'#e0f7fa':'#f3f4f6', borderRadius:'1rem', padding:'0.7rem 1rem', cursor:'pointer', border:active?'2px solid #22c55e':'2px solid transparent'});
+  useEffect(() => {
+    // Get logged-in user's email from localStorage, context, or window.user
+    const userEmail = (window.user && window.user.email) || localStorage.getItem('userEmail');
+    async function checkRegistration() {
+      try {
+        if (!userEmail) {
+          setIsRegistered(false);
+          setLoadingStatus(false);
+          return;
+        }
+        const res = await axios.get(`/api/organ-donation/status?email=${encodeURIComponent(userEmail)}`);
+        if (res.data && res.data.isRegistered) {
+          setIsRegistered(true);
+          setShowModal(false); // force close modal if already registered
+        } else {
+          setIsRegistered(false);
+        }
+      } catch (err) {
+        setIsRegistered(false);
+      } finally {
+        setLoadingStatus(false);
+      }
+    }
+    checkRegistration();
+  }, []);
+
   function handlePledgeChange(org, checked) {
     setForm(f=>({ ...f, pledge: checked ? [...f.pledge, org] : f.pledge.filter(x=>x!==org) }));
   }
@@ -132,9 +161,23 @@ const DonorHome = () => {
         <div className="dashboard-content">
           <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'1.5rem'}}>
             <h1 style={{margin:0}}>Welcome, Donor!</h1>
-            <button style={{background:'#22a6f5', color:'#fff', fontWeight:'bold', fontSize:'1.1rem', border:'none', borderRadius:'1.2rem', padding:'0.7rem 1.5rem', cursor:'pointer'}} onClick={()=>setShowModal(true)}>Donate Organ</button>
+            {loadingStatus ? (
+              <button style={{background:'#e5e7eb', color:'#888', fontWeight:'bold', fontSize:'1.1rem', border:'none', borderRadius:'1.2rem', padding:'0.7rem 1.5rem', cursor:'not-allowed'}} disabled>Checking status...</button>
+            ) : isRegistered ? (
+              <button style={{background:'#e5e7eb', color:'#888', fontWeight:'bold', fontSize:'1.1rem', border:'none', borderRadius:'1.2rem', padding:'0.7rem 1.5rem', cursor:'not-allowed'}} disabled>Already Registered</button>
+            ) : (
+              <button
+                style={{background:'#22a6f5', color:'#fff', fontWeight:'bold', fontSize:'1.1rem', border:'none', borderRadius:'1.2rem', padding:'0.7rem 1.5rem', cursor:'pointer'}}
+                onClick={() => setShowModal(true)}
+              >Donate Organ</button>
+            )}
           </div>
-          {showModal && (
+          {isRegistered && !loadingStatus && (
+            <div style={{background:'#e0f7fa', color:'#2563eb', fontWeight:'500', borderRadius:'1rem', padding:'1rem', marginBottom:'1.2rem', textAlign:'center'}}>
+              Thank you for registering as an organ donor! Your commitment is appreciated and you are already part of our life-saving community.
+            </div>
+          )}
+          {!isRegistered && showModal && (
             <div className="donor-modal-bg" style={{position:'fixed', top:0, left:0, width:'100vw', height:'100vh', background:'rgba(0,0,0,0.18)', display:'flex', alignItems:'center', justifyContent:'center', zIndex:9999, overflow:'visible'}}>
               <div className="donor-modal-form" style={{background:'#fff', borderRadius:'1.3rem', padding:'1.7rem 2.2rem', minWidth:'320px', maxWidth:'520px', maxHeight:'88vh', overflowY:'auto', boxShadow:'0 3px 16px rgba(0,0,0,0.12)', animation:'fadeIn 0.7s'}}>
                 <h2 style={{fontWeight:'bold', fontSize:'1.3rem', marginBottom:'1.2rem', textAlign:'center'}}>Organ Donation Registration</h2>

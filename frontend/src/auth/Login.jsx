@@ -44,6 +44,9 @@ const Login = () => {
       if (token) {
         localStorage.setItem('token', token);
       }
+      if (user && user.email) {
+        localStorage.setItem('userEmail', user.email);
+      }
       // Redirect based on user role
       if (user.category === 'Donor') {
         navigate('/donor');
