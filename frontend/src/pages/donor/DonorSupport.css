@@ -1,0 +1,49 @@
+.support-form-container {
+  padding: 2rem;
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  margin: 2rem 0;
+  max-width: 500px;
+}
+.support-form-container h2 {
+  color: #22c55e;
+  margin-bottom: 1rem;
+}
+.support-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.support-form textarea {
+  min-height: 100px;
+  border-radius: 1rem;
+  border: 1px solid #cbd5e1;
+  padding: 1rem;
+  font-size: 1rem;
+  resize: vertical;
+}
+.support-btn {
+  background: #22c55e;
+  color: #fff;
+  border: none;
+  padding: 0.7rem 2rem;
+  border-radius: 2rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+.support-emails {
+  margin-top: 1rem;
+  color: #334155;
+  font-size: 1rem;
+}
+.support-emails a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+.support-success {
+  margin-top: 1rem;
+  color: #22c55e;
+  font-weight: bold;
+}

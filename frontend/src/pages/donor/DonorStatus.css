@@ -1,0 +1,33 @@
+.status-table-container {
+  padding: 2rem;
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  margin: 2rem 0;
+}
+.status-table-container h2 {
+  color: #22c55e;
+  margin-bottom: 1rem;
+}
+.status-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #f8fafc;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.status-table th, .status-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+.status-table th {
+  background: #e0f7fa;
+  color: #22c55e;
+}
+.status-table tr:last-child td {
+  border-bottom: none;
+}
+.status-table td {
+  color: #334155;
+}

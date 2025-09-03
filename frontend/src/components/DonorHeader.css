@@ -1,0 +1,39 @@
+.donor-header {
+  width: 100%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 0.5rem 2rem;
+  gap: 2rem;
+}
+.donor-header-icons {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.donor-header-icon {
+  font-size: 1.6rem;
+  color: #2563eb;
+  cursor: pointer;
+  background: #f3f4f6;
+  border-radius: 50%;
+  padding: 0.6rem;
+  transition: color 0.2s;
+}
+.donor-header-icon:hover {
+  color: #22c55e;
+}
+.donor-header-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 1.08rem;
+  color: #2563eb;
+  font-weight: 500;
+}
+.donor-header-info strong {
+  color: #22c55e;
+  font-size: 1.15rem;
+}

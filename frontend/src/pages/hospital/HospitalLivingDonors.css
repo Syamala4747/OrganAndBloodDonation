@@ -1,0 +1,81 @@
+/* Hospital Living Donors Page Styles */
+.living-donors-title {
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: #ff7300;
+  margin-bottom: 0.2rem;
+}
+.living-donors-cards-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 2.1rem 1.5rem;
+  margin-top: 0.5rem;
+}
+.living-donor-card {
+  background: #fff;
+  border-radius: 1.3rem;
+  box-shadow: 0 2px 12px rgba(30,41,59,0.09);
+  padding: 1.3rem 1.5rem 1.1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.18s;
+  border: 1.5px solid #f1f5f9;
+}
+.living-donor-card:hover {
+  box-shadow: 0 6px 24px rgba(37,99,235,0.13);
+  border-color: #dbeafe;
+}
+.living-donor-card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.7rem;
+}
+.living-donor-avatar {
+  font-size: 2.1rem;
+  margin-right: 0.7rem;
+}
+.living-donor-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2563eb;
+}
+.living-donor-info {
+  font-size: 1.08rem;
+  color: #222;
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+}
+.blood-type {
+  background: #222e3a;
+  color: #fff;
+  border-radius: 0.5rem;
+  padding: 0.1rem 0.7rem;
+  font-size: 1.01rem;
+  margin-left: 0.3rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+.organ-tag {
+  background: #fdba74;
+  color: #fff;
+  border-radius: 0.5rem;
+  padding: 0.1rem 0.7rem;
+  font-size: 1.01rem;
+  margin-right: 0.3rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  margin-top: 0.2rem;
+}
+.living-donors-loading,
+.living-donors-empty,
+.living-donors-error {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #888;
+  margin-top: 2.5rem;
+}
+.donor-search-bar {
+  font-family: inherit;
+}

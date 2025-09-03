@@ -1,0 +1,66 @@
+.sidebar {
+  width: 260px;
+  min-height: 100vh;
+  background: #22c55e;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 2rem 1rem;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+}
+.sidebar-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #fff;
+}
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+.sidebar nav ul li {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem 0.8rem;
+  font-size: 1.1rem;
+  border-radius: 1rem;
+  cursor: pointer;
+  margin-bottom: 0.5rem;
+  transition: background 0.2s;
+}
+.sidebar nav ul li.active, .sidebar nav ul li:hover {
+  background: #16a34a;
+}
+.donor-sidebar {
+  background: #22c55e;
+}
+.hospital-sidebar {
+  background: #2563eb;
+}
+.admin-sidebar {
+  background: #1e293b;
+}
+.organization-sidebar {
+  background: #f97316;
+}
+@media (max-width: 900px) {
+  .sidebar {
+    width: 70px;
+    padding: 1rem 0.2rem;
+  }
+  .sidebar-logo {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  .sidebar nav ul li {
+    font-size: 0.9rem;
+    padding: 0.7rem 0.2rem;
+    gap: 0.4rem;
+  }
+}

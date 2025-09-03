@@ -1,0 +1,58 @@
+.profile-card-container {
+  padding: 2rem;
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  margin: 2rem 0;
+}
+.profile-card-container h2 {
+  color: #2563eb;
+  margin-bottom: 1rem;
+}
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  background: #eff6ff;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 1px 4px rgba(37,99,235,0.08);
+}
+.profile-photo.hospital {
+  width: 90px;
+  height: 90px;
+  background: #dbeafe;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  color: #2563eb;
+}
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  font-size: 1.1rem;
+  color: #334155;
+}
+.edit-btn {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 1rem;
+  font-size: 1rem;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+.upload-btn {
+  background: #fff;
+  color: #2563eb;
+  border: 2px solid #2563eb;
+  padding: 0.6rem 1.5rem;
+  border-radius: 1rem;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  cursor: pointer;
+}

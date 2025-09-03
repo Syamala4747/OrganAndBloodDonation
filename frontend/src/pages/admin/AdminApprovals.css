@@ -1,0 +1,53 @@
+.approvals-container {
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  margin: 0;
+  width: 100%;
+}
+.approvals-container h2 {
+  color: #1e293b;
+  margin-bottom: 1rem;
+}
+.approvals-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #f8fafc;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.approvals-table th, .approvals-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+.approvals-table th {
+  background: #e0e7ef;
+  color: #1e293b;
+}
+.approvals-table tr:last-child td {
+  border-bottom: none;
+}
+.approvals-table td {
+  color: #334155;
+}
+.approve-btn {
+  background: #22c55e;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 1rem;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+.reject-btn {
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+}

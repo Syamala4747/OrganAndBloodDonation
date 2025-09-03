@@ -1,0 +1,41 @@
+.org-donor-list-container {
+  padding: 2rem;
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  margin: 2rem 0;
+}
+.org-donor-list-container h2 {
+  color: #f97316;
+  margin-bottom: 1rem;
+}
+.org-donor-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #f8fafc;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.org-donor-table th, .org-donor-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+.org-donor-table th {
+  background: #ffe4c7;
+  color: #f97316;
+}
+.org-donor-table tr:last-child td {
+  border-bottom: none;
+}
+.org-donor-table td {
+  color: #334155;
+}
+.org-tag {
+  background: #f97316;
+  color: #fff;
+  border-radius: 0.5rem;
+  padding: 0.2rem 0.7rem;
+  margin-right: 0.3rem;
+  font-size: 0.95rem;
+}

@@ -1,0 +1,90 @@
+/* Organization After-Death Donors Page Styles */
+.after-death-donors-title {
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: #ff7300;
+  margin-bottom: 0.2rem;
+}
+.after-death-donors-cards-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 2.1rem 1.5rem;
+  margin-top: 0.5rem;
+}
+.after-death-donor-card {
+  background: #fff;
+  border-radius: 1.3rem;
+  box-shadow: 0 2px 12px rgba(30,41,59,0.09);
+  padding: 1.3rem 1.5rem 1.1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.18s;
+  border: 1.5px solid #f1f5f9;
+}
+.after-death-donor-card:hover {
+  box-shadow: 0 6px 24px rgba(249,115,22,0.13);
+  border-color: #fed7aa;
+}
+.after-death-donor-card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.7rem;
+}
+.after-death-donor-avatar {
+  font-size: 2.1rem;
+  margin-right: 0.7rem;
+}
+.after-death-donor-name {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #f97316;
+}
+.donor-type-badge {
+  background: #fde68a;
+  color: #b45309;
+  border-radius: 0.5rem;
+  padding: 0.1rem 0.6rem;
+  font-size: 0.95rem;
+  margin-left: 0.7rem;
+  font-weight: 500;
+}
+.after-death-donor-info {
+  font-size: 1.08rem;
+  color: #222;
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+}
+.blood-type {
+  background: #222e3a;
+  color: #fff;
+  border-radius: 0.5rem;
+  padding: 0.1rem 0.7rem;
+  font-size: 1.01rem;
+  margin-left: 0.3rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+.organ-tag {
+  background: #fdba74;
+  color: #fff;
+  border-radius: 0.5rem;
+  padding: 0.1rem 0.7rem;
+  font-size: 1.01rem;
+  margin-right: 0.3rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  display: inline-block;
+  margin-top: 0.2rem;
+}
+.after-death-donors-loading,
+.after-death-donors-empty,
+.after-death-donors-error {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #888;
+  margin-top: 2.5rem;
+}
+.donor-search-bar {
+  font-family: inherit;
+}

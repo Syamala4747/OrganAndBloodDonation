@@ -1,0 +1,566 @@
+/* Main container for landing page */
+.landing-main {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(120deg, #f8fafc 60%, #e0f7fa 100%);
+}
+
+.landing-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  width: 100%;
+  padding: 3rem 2rem;
+}
+
+.landing-left {
+  flex: 1;
+  min-width: 340px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.landing-title {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 1rem;
+}
+.landing-organ {
+  color: #22c55e;
+}
+.landing-blood {
+  color: #ef4444;
+}
+.landing-desc {
+  font-size: 1.2rem;
+  color: #334155;
+  margin-bottom: 2rem;
+}
+.landing-buttons {
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+}
+.donor-btn {
+  background: #22c55e;
+  color: #fff;
+  border: none;
+  padding: 1.1rem 2.2rem;
+  border-radius: 1.2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 16px rgba(34,197,94,0.12);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.donor-btn:hover {
+  background: #16a34a;
+}
+.btn-icon {
+  font-size: 1.3rem;
+}
+.learn-btn {
+  background: #fff;
+  color: #1e293b;
+  border: 1px solid #cbd5e1;
+  padding: 1.1rem 2.2rem;
+  border-radius: 1.2rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  transition: box-shadow 0.2s;
+}
+.learn-btn:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.16);
+}
+
+.landing-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.image-card {
+  position: relative;
+  background: #fff;
+  border-radius: 2rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 520px;
+}
+.organ-img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 1.5rem;
+}
+.lives-saved-card {
+  position: absolute;
+  bottom: 1.2rem;
+  left: 1.2rem;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 12px rgba(34,197,94,0.12);
+  padding: 0.7rem 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.lives-icon {
+  font-size: 1.5rem;
+  color: #22c55e;
+}
+.lives-count {
+  font-weight: bold;
+  font-size: 1.15rem;
+  color: #1e293b;
+}
+.lives-label {
+  color: #64748b;
+  font-size: 0.95rem;
+}
+.hero-heart-blur-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 0;
+  filter: blur(32px);
+  pointer-events: none;
+.main-hero-right {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+.hero-image-card {
+  position: relative;
+  z-index: 1;
+}
+/* Blurred background behind heart image card */
+.hero-image-blur-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 480px;
+  height: 480px;
+  background: linear-gradient(135deg, #e0f7fa 60%, #fff 100%);
+  filter: blur(32px);
+  z-index: 0;
+  border-radius: 2rem;
+}
+.main-hero-right {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-image-card {
+  position: relative;
+  z-index: 1;
+}
+/* Heart image card styles for hero section */
+.hero-image-card {
+  background: #fff;
+  border-radius: 2rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 520px;
+  margin: 0 auto;
+}
+.landing-container {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f8fafc;
+  min-height: 100vh;
+}
+.landing-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 3rem;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.logo {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1e293b;
+}
+.get-started {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 0.7rem 2rem;
+  border-radius: 2rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.hero-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3rem 5vw 2rem 5vw;
+  background: linear-gradient(90deg, #e0f7fa 60%, #fff 100%);
+}
+.hero-text {
+  flex: 1;
+  min-width: 320px;
+}
+.hero-text h1 {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 1rem;
+}
+.hero-text .organ {
+  color: #22c55e;
+}
+.hero-text .blood {
+  color: #ef4444;
+}
+.hero-text p {
+  font-size: 1.2rem;
+  color: #334155;
+  margin-bottom: 2rem;
+}
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+}
+.donor-btn {
+  background: #22c55e;
+  color: #fff;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 2rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+.learn-btn {
+  background: #fff;
+  color: #2563eb;
+  border: 2px solid #2563eb;
+  padding: 0.8rem 2rem;
+  border-radius: 2rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+.hero-image {
+  flex: 1;
+  min-width: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.info-section {
+  padding: 3rem 5vw;
+  background: #fff;
+}
+.info-section h2 {
+  text-align: center;
+  font-size: 2.2rem;
+  color: #1e293b;
+  margin-bottom: 2rem;
+}
+.info-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+.info-card {
+  background: #f1f5f9;
+  border-radius: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 2rem;
+  width: 320px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.info-card .icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+.info-card h3 {
+  font-size: 1.5rem;
+  color: #1e293b;
+  margin-bottom: 1rem;
+}
+.info-card p {
+  color: #334155;
+  margin-bottom: 1rem;
+}
+.info-card.blood {
+  background: #fff1f2;
+}
+.info-card.organ {
+  background: #f0fdf4;
+}
+.info-card.medical {
+  background: #eff6ff;
+}
+.info-card .highlight {
+  font-weight: bold;
+  color: #ef4444;
+}
+.info-card.organ .highlight {
+  color: #22c55e;
+}
+.info-card.medical .highlight {
+  color: #2563eb;
+}
+.main-landing-container {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f8fafc;
+  min-height: 100vh;
+}
+.main-hero-section {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  justify-content: space-between;
+  min-height: 100vh;
+  padding: 0;
+  background: linear-gradient(90deg, #e0f7fa 60%, #fff 100%);
+}
+.main-hero-left {
+  flex: 1;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 6vw;
+}
+.main-organ {
+  color: #22c55e;
+}
+.main-blood {
+  color: #ef4444;
+}
+.main-hero-left h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #1e293b;
+  margin-bottom: 1rem;
+}
+.main-hero-left p {
+  font-size: 1.3rem;
+  color: #334155;
+  margin-bottom: 2rem;
+}
+.main-hero-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.main-donor-btn {
+  background: linear-gradient(90deg, #22c55e 60%, #16a34a 100%);
+  color: #fff;
+  border: none;
+  padding: 1.3rem 2.8rem;
+  border-radius: 2rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 4px 16px rgba(34,197,94,0.12);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.main-donor-btn:hover {
+  background: linear-gradient(90deg, #16a34a 60%, #22c55e 100%);
+  box-shadow: 0 8px 32px rgba(34,197,94,0.18);
+}
+}
+.main-btn-icon {
+  font-size: 1.3rem;
+}
+.main-learn-btn {
+  background: #fff;
+  color: #1e293b;
+  border: 1px solid #cbd5e1;
+  padding: 1.3rem 2.8rem;
+  border-radius: 2rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  transition: box-shadow 0.2s;
+}
+.main-learn-btn:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.16);
+}
+}
+.main-lives-saved {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  background: #d1fae5;
+  border-radius: 1rem;
+  padding: 0.7rem 1.2rem;
+  margin-top: 1.5rem;
+  font-size: 1.1rem;
+  color: #22c55e;
+  width: fit-content;
+}
+.main-lives-icon {
+  font-size: 1.5rem;
+}
+.main-lives-count {
+  font-weight: bold;
+  font-size: 1.35rem;
+}
+.main-lives-label {
+  color: #64748b;
+  font-size: 1rem;
+}
+.main-hero-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8fafc;
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  min-height: 100vh;
+}
+.main-hero-img {
+  width: 100%;
+  max-width: 480px;
+  min-width: 320px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 2rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+  background: #fff;
+  border: 2px solid #e0f2fe;
+}
+.main-info-cards-section {
+  padding: 2rem 5vw 3rem 5vw;
+}
+.main-info-cards {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+.main-info-card {
+  flex: 1;
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 2.2rem 2rem 2rem 2rem;
+  text-align: center;
+  min-width: 280px;
+  max-width: 400px;
+}
+.main-info-card.blood {
+  background: #fff5f5;
+}
+.main-info-card.organ {
+  background: #f0fdf4;
+}
+.main-info-card.medical {
+  background: #f0f6ff;
+}
+.main-info-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.2rem auto;
+  font-size: 2.2rem;
+}
+.main-info-card h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 1rem;
+}
+.main-info-card p {
+  color: #334155;
+  font-size: 1.1rem;
+  margin-bottom: 1.2rem;
+}
+.main-info-highlight {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+.main-info-highlight.blood {
+  color: #ef4444;
+}
+.main-info-highlight.organ {
+  color: #22c55e;
+}
+.main-info-highlight.medical {
+  color: #2563eb;
+}
+.main-cta-section {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.main-cta-btn {
+  background: linear-gradient(90deg, #22c55e 0%, #2563eb 100%);
+  color: #fff;
+  border: none;
+  padding: 1rem 3rem;
+  border-radius: 2rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.main-cta-icon {
+  font-size: 1.3rem;
+}
+@media (max-width: 900px) {
+  .hero-section {
+    flex-direction: column;
+    padding: 2rem 2vw;
+  }
+  .info-cards {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .main-hero-section, .main-info-cards {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .main-hero-img {
+    width: 100%;
+    margin-top: 2rem;
+  }
+  .main-hero-right {
+    min-height: 300px;
+    border-radius: 0;
+  }
+  .main-hero-img {
+    height: 300px;
+    border-radius: 0;
+  }
+}

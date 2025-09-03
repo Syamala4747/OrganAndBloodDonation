@@ -1,0 +1,32 @@
+.navbar {
+  width: 100%;
+  height: 60px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 0 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.navbar-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #22c55e;
+}
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.navbar-icon {
+  font-size: 1.4rem;
+  color: #2563eb;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.navbar-icon:hover {
+  color: #22c55e;
+}
