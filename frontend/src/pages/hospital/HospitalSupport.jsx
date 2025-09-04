@@ -7,8 +7,12 @@ const HospitalSupport = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO: Send query to backend/support email
-    setSent(true);
+    // Send query to backend/support email
+    fetch('/api/support/email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: query, to: 'syamala7072@gmail.com' })
+    }).then(() => setSent(true)).catch(() => alert('Failed to send query.'));
   };
 
   return (

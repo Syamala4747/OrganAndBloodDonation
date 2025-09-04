@@ -110,7 +110,42 @@ const HospitalLivingDonors = () => {
                       <div><b>Phone:</b> {donor.phone}</div>
                       <div><b>Email:</b> {donor.email}</div>
                     </div>
-                    <button style={{marginTop:'0.7rem',background:'#2563eb',color:'#fff',border:'none',borderRadius:'1rem',padding:'0.6rem 1.2rem',fontWeight:'bold',cursor:'pointer'}} onClick={()=>alert(`Request sent for donor: ${donor.name}`)}>Request</button>
+                    {/* Organ selection and request button */}
+                    {Array.isArray(donor.organs) && donor.organs.length > 0 ? (
+                      <div style={{marginTop:'0.7rem'}}>
+                        <select style={{marginRight:'0.7rem',padding:'0.4rem',borderRadius:'0.7rem',border:'1px solid #e5e7eb'}} id={`organ-select-${donor._id || idx}`}>
+                          <option value="">Select organ</option>
+                          {donor.organs.map(org => <option key={org} value={org}>{org}</option>)}
+                        </select>
+                        <button
+                          style={{background:'#2563eb',color:'#fff',border:'none',borderRadius:'1rem',padding:'0.6rem 1.2rem',fontWeight:'bold',cursor:'pointer'}}
+                          onClick={async () => {
+                            const organ = document.getElementById(`organ-select-${donor._id || idx}`).value;
+                            if (!organ) return alert('Please select an organ to request.');
+                            try {
+                              const token = localStorage.getItem('token');
+                              const res = await fetch('/api/hospital/request-donation', {
+                                method: 'POST',
+                                headers: {
+                                  'Content-Type': 'application/json',
+                                  ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+                                },
+                                body: JSON.stringify({ donorId: donor._id, organ })
+                              });
+                              if (res.ok) {
+                                alert(`Request sent for ${organ} from donor: ${donor.name}`);
+                              } else {
+                                alert('Failed to send request.');
+                              }
+                            } catch (err) {
+                              alert('Failed to send request.');
+                            }
+                          }}
+                        >Request</button>
+                      </div>
+                    ) : (
+                      <button style={{marginTop:'0.7rem',background:'#2563eb',color:'#fff',border:'none',borderRadius:'1rem',padding:'0.6rem 1.2rem',fontWeight:'bold',cursor:'pointer'}} disabled>No organs available</button>
+                    )}
                   </div>
                 ))
               )}

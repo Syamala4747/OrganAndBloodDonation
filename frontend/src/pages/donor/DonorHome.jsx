@@ -57,10 +57,11 @@ const DonorHome = () => {
             setIsRegistered(false);
           }
         } catch (err) {
-          // If 404, treat as not registered
+          // If 404, treat as not registered, do not show error
           if (err.response && err.response.status === 404) {
             setIsRegistered(false);
           } else {
+            // Only show error for other cases (network/server error)
             setIsRegistered(false);
           }
         }

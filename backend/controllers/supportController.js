@@ -6,13 +6,13 @@ export async function sendSupportEmail(req, res) {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'syamala7072@gmail.com',
-        pass: 'your-app-password-here' // Use Gmail App Password
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_PASS
       }
     });
 
     await transporter.sendMail({
-      from: email,
+      from: process.env.GMAIL_USER,
       to: 'syamala7072@gmail.com',
       subject: `Support Query from ${name}`,
       text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`

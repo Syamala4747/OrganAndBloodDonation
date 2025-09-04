@@ -61,12 +61,20 @@ export const searchDonors = async (req, res) => {
 // Request donation
 export const requestDonation = async (req, res) => {
   try {
-    const { donorId, type, notes } = req.body;
+    const { donorId, organ } = req.body;
     const donor = await Donor.findById(donorId);
     if (!donor) return res.status(404).json({ message: 'Donor not found' });
-    donor.status.push({ type, date: new Date(), status: 'Requested', requestedBy: req.user.username, notes });
+    donor.status.push({ type: organ, date: new Date(), status: 'Requested', requestedBy: req.user.username });
     await donor.save();
-    res.json({ message: 'Donation requested' });
+    // Create notification for donor
+    const DonorNotification = (await import('../models/DonorNotification.js')).default;
+    await DonorNotification.create({
+      donor: donor._id,
+      message: `${req.user.username} (Hospital) requested you to donate your ${organ} for a patient. It is emergency.`,
+      hospital: req.user.username,
+      organ
+    });
+    res.json({ message: 'Donation requested and donor notified.' });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

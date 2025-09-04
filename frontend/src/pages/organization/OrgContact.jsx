@@ -9,13 +9,11 @@ const OrgContact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Replace with actual token logic if needed
-      const token = localStorage.getItem('token');
-      await axios.post(
-        '/api/organization/contact',
-        { query },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      await fetch('/api/support/email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: query, to: 'syamala7072@gmail.com' })
+      });
       setSent(true);
     } catch (err) {
       alert('Failed to send query.');
