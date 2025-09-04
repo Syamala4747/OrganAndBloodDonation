@@ -65,7 +65,7 @@ const AdminApprovals = () => {
                 <th>Role</th>
                 <th>Email</th>
                 <th>Name</th>
-                <th>License/Type</th>
+                <th>Type</th>
                 <th>Address</th>
                 <th>Contact</th>
                 <th>Proof of Evidence</th>
@@ -80,12 +80,37 @@ const AdminApprovals = () => {
                   <td>{item.category}</td>
                   <td>{item.email}</td>
                   <td>{item.name || '-'}</td>
-                  <td>{item.licenseId || item.type || '-'}</td>
+                  <td>{item.type || '-'}</td>
                   <td>{item.address || '-'}</td>
                   <td>{item.contact || '-'}</td>
                   <td>
-                    {item.verificationDocs && item.verificationDocs.length > 0 ? (
-                      <a href={`/${item.verificationDocs[0]}`} target="_blank" rel="noopener noreferrer">View Proof</a>
+                    {item.verificationDocs && item.verificationDocs.length > 0 && item.verificationDocs[0] ? (
+                      <>
+                        {item.verificationDocs[0].match(/\.(jpg|jpeg|png|gif)$/i) ? (
+                          <button
+                            onClick={() => window.open(`http://localhost:5000/uploads/${item.verificationDocs[0].replace(/^.*uploads[\\\/]/, '')}`, '_blank')}
+                            style={{ color: 'blue', textDecoration: 'underline', background: 'none', border: 'none', cursor: 'pointer' }}
+                          >
+                            Click to view photo
+                          </button>
+                        ) : item.verificationDocs[0].match(/\.pdf$/i) ? (
+                          <a
+                            href={`http://localhost:5000/uploads/${item.verificationDocs[0].replace(/^.*uploads[\\\/]/, '')}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{ color: 'blue', textDecoration: 'underline', background: 'none', border: 'none', cursor: 'pointer' }}
+                          >
+                            Click to view PDF
+                          </a>
+                        ) : (
+                          <button
+                            onClick={() => window.open(`http://localhost:5000/uploads/${item.verificationDocs[0].split('/').pop()}`, '_blank')}
+                            style={{ color: 'blue', textDecoration: 'underline', background: 'none', border: 'none', cursor: 'pointer' }}
+                          >
+                            Click to view file
+                          </button>
+                        )}
+                      </>
                     ) : 'No file'}
                   </td>
                   <td>{item.status}</td>

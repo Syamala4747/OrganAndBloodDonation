@@ -116,6 +116,7 @@ const OrgAfterDeathDonors = () => {
                       <div><b>Phone:</b> {donor.phone}</div>
                       <div><b>Email:</b> {donor.email}</div>
                     </div>
+                      <button style={{marginTop:'0.7rem',background:'#22c55e',color:'#fff',border:'none',borderRadius:'1rem',padding:'0.6rem 1.2rem',fontWeight:'bold',cursor:'pointer'}} onClick={()=>alert(`Request sent for donor: ${donor.name}`)}>Request</button>
                   </div>
                 ))
               )}

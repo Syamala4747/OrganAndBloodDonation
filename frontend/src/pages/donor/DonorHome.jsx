@@ -48,12 +48,21 @@ const DonorHome = () => {
           setLoadingStatus(false);
           return;
         }
-        const res = await axios.get(`/api/organ-donation/status?email=${encodeURIComponent(userEmail)}`);
-        if (res.data && res.data.isRegistered) {
-          setIsRegistered(true);
-          setShowModal(false); // force close modal if already registered
-        } else {
-          setIsRegistered(false);
+        try {
+          const res = await axios.get(`/api/organ-donation/status?email=${encodeURIComponent(userEmail)}`);
+          if (res.data && res.data.isRegistered) {
+            setIsRegistered(true);
+            setShowModal(false); // force close modal if already registered
+          } else {
+            setIsRegistered(false);
+          }
+        } catch (err) {
+          // If 404, treat as not registered
+          if (err.response && err.response.status === 404) {
+            setIsRegistered(false);
+          } else {
+            setIsRegistered(false);
+          }
         }
       } catch (err) {
         setIsRegistered(false);
@@ -93,7 +102,7 @@ const DonorHome = () => {
           }
         }
       }
-      const response = await axios.post('/api/donor/register', formData, {
+  const response = await axios.post('/api/organ-donation/register', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       setStatus('Successfully registered for organ donation. Thank you!');

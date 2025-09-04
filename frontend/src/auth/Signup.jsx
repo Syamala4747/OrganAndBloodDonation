@@ -24,6 +24,9 @@ const roleOptions = [
 ];
 
 const Signup = () => {
+  // File upload states
+  const [hospitalProof, setHospitalProof] = useState(null);
+  const [orgProof, setOrgProof] = useState(null);
   // Common fields
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -47,20 +50,40 @@ const Signup = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     setError('');
-    let payload = { category: selectedRole };
     let endpoint = '';
+    let dataToSend;
     if (selectedRole === 'Donor') {
-      payload = { username, email, password, category: 'Donor' };
+      dataToSend = { username, email, password, category: 'Donor' };
       endpoint = '/api/auth/donor-signup';
+      await axios.post(endpoint, dataToSend);
     } else if (selectedRole === 'Hospital') {
-      payload = { username: hospitalName, hospitalName, registrationNumber, email, password, address: hospitalAddress, contactNumber: hospitalContact, category: 'Hospital' };
+      const formData = new FormData();
+      formData.append('username', hospitalName);
+      formData.append('hospitalName', hospitalName);
+      formData.append('registrationNumber', registrationNumber);
+      formData.append('email', email);
+      formData.append('password', password);
+      formData.append('address', hospitalAddress);
+      formData.append('contactNumber', hospitalContact);
+      formData.append('category', 'Hospital');
+      if (hospitalProof) formData.append('proofOfEvidence', hospitalProof);
       endpoint = '/api/auth/hospital-signup';
+      await axios.post(endpoint, formData, { headers: { 'Content-Type': 'multipart/form-data' } });
     } else if (selectedRole === 'Organization') {
-      payload = { username: orgName, orgName, orgType, email, password, address: orgAddress, contactNumber: orgContact, category: 'Organization' };
+      const formData = new FormData();
+      formData.append('username', orgName);
+      formData.append('orgName', orgName);
+      formData.append('orgType', orgType);
+      formData.append('email', email);
+      formData.append('password', password);
+      formData.append('address', orgAddress);
+      formData.append('contactNumber', orgContact);
+      formData.append('category', 'Organization');
+      if (orgProof) formData.append('proofOfEvidence', orgProof);
       endpoint = '/api/auth/organization-signup';
+      await axios.post(endpoint, formData, { headers: { 'Content-Type': 'multipart/form-data' } });
     }
     try {
-      await axios.post(endpoint, payload);
       navigate('/login');
     } catch (err) {
       setError(err.response?.data?.message || 'Registration failed');

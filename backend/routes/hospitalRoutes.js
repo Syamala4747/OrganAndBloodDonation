@@ -1,12 +1,34 @@
-import express from 'express';
+import { getHospitalProfile, updateHospitalProfile, searchDonors, requestDonation, getRequestsStatus, uploadHospitalProof } from '../controllers/hospitalController.js';
 import { protect } from '../middleware/authMiddleware.js';
-import { getHospitalProfile, updateHospitalProfile, searchDonors, requestDonation, getRequestsStatus } from '../controllers/hospitalController.js';
+import express from 'express';
+
+import multer from 'multer';
+import fs from 'fs';
+
 const router = express.Router();
+
+// Multer setup for proofOfEvidence file
+const storage = multer.diskStorage({
+	destination: function (req, file, cb) {
+		const dir = 'uploads/';
+		if (!fs.existsSync(dir)) {
+			fs.mkdirSync(dir);
+		}
+		cb(null, dir);
+	},
+	filename: function (req, file, cb) {
+		cb(null, Date.now() + '-' + file.originalname);
+	}
+});
+const upload = multer({ storage });
 
 router.get('/profile', protect, getHospitalProfile);
 router.put('/profile', protect, updateHospitalProfile);
 router.get('/donors', protect, searchDonors);
 router.post('/request-donation', protect, requestDonation);
 router.get('/requests-status', protect, getRequestsStatus);
+
+// Upload/Update proof of evidence
+router.post('/upload-proof', protect, upload.single('proofOfEvidence'), uploadHospitalProof);
 
 export default router;

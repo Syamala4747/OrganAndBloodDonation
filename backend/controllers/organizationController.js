@@ -1,3 +1,19 @@
+// Upload/Update organization proof of evidence
+export const uploadOrganizationProof = async (req, res) => {
+  try {
+    const org = await Organization.findOne({ user: req.user._id });
+    if (!org) return res.status(404).json({ message: 'Organization not found' });
+    if (req.file) {
+      org.verificationDocs = [req.file.path];
+      await org.save();
+      return res.json({ message: 'Proof uploaded', verificationDocs: org.verificationDocs });
+    } else {
+      return res.status(400).json({ message: 'No file uploaded' });
+    }
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
 import Organization from '../models/Organization.js';
 import OrganDonation from '../models/OrganDonation.js';
 

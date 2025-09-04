@@ -13,7 +13,7 @@ const HospitalLivingDonors = () => {
       setLoading(true);
       setError('');
       try {
-        const res = await fetch('/api/donor/living-donors');
+  const res = await fetch('/api/organ-donation/living-donors');
         if (!res.ok) throw new Error('Failed to fetch donors');
         const data = await res.json();
         setDonors(data);
@@ -99,7 +99,7 @@ const HospitalLivingDonors = () => {
                 filteredDonors.map((donor, idx) => (
                   <div className="living-donor-card" key={donor._id || idx}>
                     <div className="living-donor-card-header">
-                      <span className="living-donor-avatar">🫀</span>
+                      <span className="living-donor-avatar">�‍⚕️</span>
                       <span className="living-donor-name">{donor.name}</span>
                     </div>
                     <div className="living-donor-info">
@@ -110,6 +110,7 @@ const HospitalLivingDonors = () => {
                       <div><b>Phone:</b> {donor.phone}</div>
                       <div><b>Email:</b> {donor.email}</div>
                     </div>
+                    <button style={{marginTop:'0.7rem',background:'#2563eb',color:'#fff',border:'none',borderRadius:'1rem',padding:'0.6rem 1.2rem',fontWeight:'bold',cursor:'pointer'}} onClick={()=>alert(`Request sent for donor: ${donor.name}`)}>Request</button>
                   </div>
                 ))
               )}

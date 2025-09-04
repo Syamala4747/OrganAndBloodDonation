@@ -1,3 +1,20 @@
+// Upload/Update hospital proof of evidence
+export const uploadHospitalProof = async (req, res) => {
+  try {
+    const hospital = await Hospital.findOne({ user: req.user._id });
+    if (!hospital) return res.status(404).json({ message: 'Hospital not found' });
+    if (req.file) {
+      hospital.verificationDocs = [req.file.path];
+      await hospital.save();
+      console.log('Hospital proof updated:', hospital.verificationDocs);
+      return res.json({ message: 'Proof uploaded', verificationDocs: hospital.verificationDocs });
+    } else {
+      return res.status(400).json({ message: 'No file uploaded' });
+    }
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
 import Hospital from '../models/Hospital.js';
 import Donor from '../models/Donor.js';
 import User from '../models/User.js';

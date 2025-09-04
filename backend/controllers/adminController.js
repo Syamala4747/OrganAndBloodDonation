@@ -41,17 +41,26 @@ export const getPendingApprovals = async (req, res) => {
             licenseId: h.licenseId,
             address: h.address,
             contact: h.contact,
-            status: h.status
+            status: h.status,
+            verificationDocs: h.verificationDocs || [],
+            type: '' // Hospitals do not have type
           };
         }
       } else if (user.category === 'Organization') {
         const o = await Organization.findOne({ user: user._id });
         if (o) {
+          // Try to extract type from name if present, or use orgType if available
+          let orgType = '';
+          if (o.name && o.name.includes('(') && o.name.includes(')')) {
+            orgType = o.name.substring(o.name.indexOf('(')+1, o.name.indexOf(')'));
+          }
           details = {
-            name: o.name,
+            name: o.name ? o.name.replace(/\s*\(.*\)/, '') : '',
+            type: orgType,
             address: o.address,
             contact: o.contact,
-            status: o.status
+            status: o.status,
+            verificationDocs: o.verificationDocs || []
           };
         }
       }

@@ -26,6 +26,10 @@ import organDonationRoutes from './routes/organDonationRoutes.js';
 import chatbotRoutes from './routes/chatbotRoutes.js';
 
 // API routes
+
+// Serve uploaded files statically
+app.use('/uploads', express.static('uploads'));
+
 app.use('/api/auth', authRoutes);
 
 app.use('/api/donor', donorRoutes);
