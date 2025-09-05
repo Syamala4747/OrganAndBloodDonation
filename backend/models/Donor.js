@@ -23,4 +23,4 @@ const donorSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now },
 });
 
-export default mongoose.model('Donor', donorSchema);
+export default mongoose.model('Donor', donorSchema, 'donors');

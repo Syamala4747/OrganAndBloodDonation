@@ -194,25 +194,21 @@ const DonorHome = () => {
                 <form onSubmit={handleSubmit}>
                   <div style={{display:'flex', gap:'1rem', marginBottom:'1rem'}}>
                     <div style={{flex:1}}>
-                      <label style={{fontWeight:'500'}}>Full Name</label>
-                      <label htmlFor="donor-name">Full Name</label>
+                      <label htmlFor="donor-name" style={{fontWeight:'500'}}>Full Name</label>
                       <input id="donor-name" type="text" value={form.name || ''} onChange={e=>setForm({...form, name:e.target.value})} required placeholder="Enter your full name" style={inputStyle} />
                     </div>
                     <div style={{width:'90px'}}>
-                      <label style={{fontWeight:'500'}}>Age</label>
-                      <label htmlFor="donor-age">Age</label>
+                      <label htmlFor="donor-age" style={{fontWeight:'500'}}>Age</label>
                       <input id="donor-age" type="number" value={form.age || ''} onChange={e=>setForm({...form, age:e.target.value})} required min={0} max={120} placeholder="0" style={inputStyle} />
                     </div>
                   </div>
                   <div style={{marginBottom:'1rem'}}>
-                    <label style={{fontWeight:'500'}}>Phone Number</label>
-                    <label htmlFor="donor-phone">Phone</label>
+                    <label htmlFor="donor-phone" style={{fontWeight:'500'}}>Phone Number</label>
                     <input id="donor-phone" type="tel" value={form.phone || ''} onChange={e=>setForm({...form, phone:e.target.value})} required placeholder="Enter your phone number" style={inputStyle} />
                   </div>
                   <div style={{display:'flex', gap:'1rem', marginBottom:'1rem'}}>
                     <div style={{flex:1}}>
-                      <label style={{fontWeight:'500'}}>Gender</label>
-                      <label htmlFor="donor-gender">Gender</label>
+                      <label htmlFor="donor-gender" style={{fontWeight:'500'}}>Gender</label>
                       <select id="donor-gender" value={form.gender || ''} onChange={e=>setForm({...form, gender:e.target.value})} required style={inputStyle} aria-label="Gender">
                         <option value="">Select Gender</option>
                         <option value="Male">Male</option>
@@ -221,8 +217,7 @@ const DonorHome = () => {
                       </select>
                     </div>
                     <div style={{flex:1}}>
-                      <label style={{fontWeight:'500'}}>Blood Type</label>
-                      <label htmlFor="donor-bloodType">Blood Type</label>
+                      <label htmlFor="donor-bloodType" style={{fontWeight:'500'}}>Blood Type</label>
                       <select id="donor-bloodType" value={form.bloodType || ''} onChange={e=>setForm({...form, bloodType:e.target.value})} required style={inputStyle} aria-label="Blood Type">
                         <option value="">Select Blood Type</option>
                         <option value="A+">A+</option>
@@ -236,26 +231,20 @@ const DonorHome = () => {
                       </select>
                     </div>
                   </div>
-                  <label style={{fontWeight:'500'}}>Email</label>
-                  <label htmlFor="donor-email">Email</label>
+                  <label htmlFor="donor-email" style={{fontWeight:'500'}}>Email</label>
                   <input id="donor-email" type="email" value={form.email || ''} onChange={e=>setForm({...form, email:e.target.value})} required placeholder="your.email@example.com" style={inputStyle} />
-                  <label style={{fontWeight:'500'}}>Location</label>
-                  <label htmlFor="donor-city">City</label>
+                  <label htmlFor="donor-city" style={{fontWeight:'500'}}>City</label>
                   <input id="donor-city" type="text" value={form.city || ''} onChange={e=>setForm({...form, city:e.target.value})} required placeholder="Enter your city" style={inputStyle} />
                   <label style={{fontWeight:'500'}}>Profile Photo</label>
                   <div style={{border:'1.5px dashed #cbd5e1', borderRadius:'1.2rem', padding:'1.2rem', textAlign:'center', marginBottom:'1rem', cursor:'pointer'}} onClick={()=>photoInputRef.current.click()}>
                     {form.photoPreview ? <img src={form.photoPreview} alt="Profile" style={{width:'80px', height:'80px', borderRadius:'50%', objectFit:'cover'}} /> : <span style={{color:'#94a3b8', fontSize:'2.2rem'}}>Click to upload photo</span>}
-                    <input type="file" accept="image/*" ref={photoInputRef} style={{display:'none'}} onChange={handlePhotoUpload} required />
-                      {/* Debug: Show photo file and preview URL */}
-                      <div style={{marginTop:'0.5rem', fontSize:'0.95rem', color:'#f87171'}}>
-                        <b>Debug:</b> photo: {form.photo && form.photo.name ? form.photo.name : String(form.photo)}<br />
-                        photoPreview: {form.photoPreview ? form.photoPreview : 'none'}
-                      </div>
+                    <input type="file" accept="image/*" name="profilePhoto" ref={photoInputRef} style={{display:'none'}} onChange={handlePhotoUpload} />
+                    {/* Debug info removed for production UI */}
                   </div>
                   <label style={{fontWeight:'500'}}>Medical Certificate (Optional)</label>
                   <div style={{border:'1.5px dashed #cbd5e1', borderRadius:'1.2rem', padding:'1.2rem', textAlign:'center', marginBottom:'1rem', cursor:'pointer'}} onClick={()=>medicalInputRef.current.click()}>
                     {form.medicalCertificate ? <span style={{color:'#22c55e'}}>Uploaded: {form.medicalCertificate.name}</span> : <span style={{color:'#94a3b8'}}>Upload medical certificate (PDF, JPG, PNG)</span>}
-                    <input type="file" accept=".pdf,image/*" ref={medicalInputRef} style={{display:'none'}} onChange={e=>setForm({...form, medicalCertificate:e.target.files[0]})} />
+                    <input type="file" accept=".pdf,image/*" name="medicalCertificate" ref={medicalInputRef} style={{display:'none'}} onChange={e=>setForm({...form, medicalCertificate:e.target.files[0]})} />
                   </div>
                   <label style={{fontWeight:'500'}}>Donation Type</label>
                   <div style={{display:'flex', gap:'1rem', marginBottom:'1rem'}}>

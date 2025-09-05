@@ -3,6 +3,16 @@ import DonorNotification from '../models/DonorNotification.js';
 
 const router = express.Router();
 
+// Debug route: List all notifications for a donor (no auth)
+router.get('/debug/:donorId', async (req, res) => {
+  try {
+    const notifications = await DonorNotification.find({ donor: req.params.donorId }).sort({ createdAt: -1 });
+    res.json(notifications);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 // Get notifications for a donor
 router.get('/:donorId', async (req, res) => {
   try {

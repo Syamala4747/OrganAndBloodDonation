@@ -1,4 +1,4 @@
-import { getHospitalProfile, updateHospitalProfile, searchDonors, requestDonation, getRequestsStatus, uploadHospitalProof } from '../controllers/hospitalController.js';
+import { getHospitalProfile, updateHospitalProfile, searchDonors, requestDonation, getRequestsStatus, uploadHospitalProof, respondDonationRequest } from '../controllers/hospitalController.js';
 import { protect } from '../middleware/authMiddleware.js';
 import express from 'express';
 
@@ -27,6 +27,7 @@ router.put('/profile', protect, updateHospitalProfile);
 router.get('/donors', protect, searchDonors);
 router.post('/request-donation', protect, requestDonation);
 router.get('/requests-status', protect, getRequestsStatus);
+router.post('/respond-donation', protect, respondDonationRequest);
 
 // Upload/Update proof of evidence
 router.post('/upload-proof', protect, upload.single('proofOfEvidence'), uploadHospitalProof);

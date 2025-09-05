@@ -11,7 +11,7 @@ const HospitalStatus = () => {
   useEffect(() => {
     const fetchStatus = async () => {
       try {
-        const res = await axios.get('/api/hospital/status');
+  const res = await axios.get('/api/hospital/requests-status');
         setStatus(res.data);
       } catch (err) {
         setStatus(null);

@@ -1,3 +1,13 @@
+// Get hospital requests status
+export const getRequestsStatus = async (req, res) => {
+  try {
+    const hospital = await Hospital.findOne({ user: req.user._id });
+    if (!hospital) return res.status(404).json({ message: 'Hospital not found' });
+    res.json(hospital.requests);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
 // Upload/Update hospital proof of evidence
 export const uploadHospitalProof = async (req, res) => {
   try {
@@ -62,17 +72,32 @@ export const searchDonors = async (req, res) => {
 export const requestDonation = async (req, res) => {
   try {
     const { donorId, organ } = req.body;
-    const donor = await Donor.findById(donorId);
-    if (!donor) return res.status(404).json({ message: 'Donor not found' });
+  console.log('RequestDonation received donorId:', donorId);
+  const allDonors = await Donor.find({});
+  console.log('All donors:', allDonors);
+  const donor = await Donor.findById(donorId);
+    if (!donor || !donor.email) {
+      console.log('Donor not found or donor email missing for donorId:', donorId);
+      return res.status(404).json({ message: 'Donor not found or donor email missing' });
+    }
     donor.status.push({ type: organ, date: new Date(), status: 'Requested', requestedBy: req.user.username });
     await donor.save();
+    // Get hospital details
+    const hospitalDetails = await Hospital.findOne({ user: req.user._id });
+    let hospitalInfo = '';
+    if (hospitalDetails) {
+      hospitalInfo = `\nHospital Details:\n- Name: ${hospitalDetails.name || req.user.username}\n- Phone: ${hospitalDetails.contact || 'N/A'}\n- Email: ${hospitalDetails.email || 'N/A'}\n- City: ${hospitalDetails.city || hospitalDetails.location || 'N/A'}`;
+    } else {
+      hospitalInfo = `\nHospital Username: ${req.user.username}`;
+    }
     // Create notification for donor
     const DonorNotification = (await import('../models/DonorNotification.js')).default;
     await DonorNotification.create({
       donor: donor._id,
-      message: `${req.user.username} (Hospital) requested you to donate your ${organ} for a patient. It is emergency.`,
+      message: `Dear Donor,\n\nYou have received a new organ donation request for '${organ}' from the hospital below.${hospitalInfo}\n\nPlease review the request and respond by accepting or rejecting. Thank you for your support!`,
       hospital: req.user.username,
-      organ
+      organ,
+      actionRequired: true // flag for frontend to show accept/reject
     });
     res.json({ message: 'Donation requested and donor notified.' });
   } catch (err) {
@@ -80,13 +105,32 @@ export const requestDonation = async (req, res) => {
   }
 };
 
-// Get hospital requests status
-export const getRequestsStatus = async (req, res) => {
+// Donor accepts/rejects donation request
+export const respondDonationRequest = async (req, res) => {
   try {
-    const hospital = await Hospital.findOne({ user: req.user._id });
-    if (!hospital) return res.status(404).json({ message: 'Hospital not found' });
-    res.json(hospital.requests);
+    const { notificationId, response } = req.body; // response: 'accepted' or 'rejected'
+    const DonorNotification = (await import('../models/DonorNotification.js')).default;
+    const notification = await DonorNotification.findById(notificationId);
+    if (!notification) return res.status(404).json({ message: 'Notification not found' });
+    notification.isRead = true;
+    notification.actionRequired = false;
+    notification.response = response;
+    await notification.save();
+
+    // Notify hospital
+    // You may want a HospitalNotification model, but for now, send a donor notification with hospital as recipient
+    await DonorNotification.create({
+      donor: null, // not for donor
+      hospital: notification.hospital,
+      organ: notification.organ,
+      message: `Donor has ${response} your request for ${notification.organ} donation.`,
+      isRead: false,
+      response
+    });
+    res.json({ message: `Request ${response} and hospital notified.` });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
+
+
