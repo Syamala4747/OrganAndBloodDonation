@@ -41,20 +41,32 @@ const OrgProfile = () => {
   };
 
   return (
-    <div className="profile-card-container">
-      <h2>Organization Profile</h2>
-      <div className="profile-card">
-        <div className="profile-photo organization">🏢</div>
-        <div className="profile-details">
-          <div><strong>Name:</strong> {organization.name}</div>
-          <div><strong>Type:</strong> {organization.type}</div>
-          <div><strong>Address:</strong> {organization.address}</div>
-          <div><strong>Contact:</strong> {organization.contact}</div>
-          <input type="file" onChange={handleFileChange} style={{ marginTop: '1rem' }} />
-          <button className="upload-btn" onClick={handleUpload} disabled={loading} style={{ marginTop: '0.5rem' }}>
-            {loading ? 'Uploading...' : 'Upload Verification Documents'}
-          </button>
-          {uploadMsg && <div style={{ color: uploadMsg.includes('success') ? 'green' : 'red', marginTop: '0.5rem' }}>{uploadMsg}</div>}
+    <div className="dashboard-container">
+      <OrganizationSidebar active="profile" />
+      <div className="dashboard-main">
+        <nav className="dashboard-navbar">
+          <input className="dashboard-search" placeholder="Search donors..." />
+          <div className="dashboard-actions">
+            <span className="dashboard-bell">🔔</span>
+            <div className="dashboard-profile organization">🏢</div>
+          </div>
+        </nav>
+        <div className="dashboard-content">
+          <h2>Organization Profile</h2>
+          <div className="profile-card">
+            <div className="profile-photo organization">🏢</div>
+            <div className="profile-details">
+              <div><strong>Name:</strong> {organization.name}</div>
+              <div><strong>Type:</strong> {organization.type}</div>
+              <div><strong>Address:</strong> {organization.address}</div>
+              <div><strong>Contact:</strong> {organization.contact}</div>
+              <input type="file" onChange={handleFileChange} style={{ marginTop: '1rem' }} />
+              <button className="upload-btn" onClick={handleUpload} disabled={loading} style={{ marginTop: '0.5rem' }}>
+                {loading ? 'Uploading...' : 'Upload Verification Documents'}
+              </button>
+              {uploadMsg && <div style={{ color: uploadMsg.includes('success') ? 'green' : 'red', marginTop: '0.5rem' }}>{uploadMsg}</div>}
+            </div>
+          </div>
         </div>
       </div>
     </div>

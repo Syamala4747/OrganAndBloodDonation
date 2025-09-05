@@ -33,34 +33,46 @@
   font-size: 1.5rem;
   cursor: pointer;
 }
-.dashboard-profile.hospital {
+/* Match donor dashboard layout, but blue theme */
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  background: #f8fafc;
+}
+.dashboard-main {
+  margin-left: 260px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.dashboard-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.dashboard-search {
+  padding: 0.7rem 1.2rem;
+  border-radius: 2rem;
+  border: 1px solid #cbd5e1;
+  font-size: 1rem;
+  width: 220px;
+}
+.dashboard-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.dashboard-bell {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.dashboard-profile {
   font-size: 1.5rem;
   background: #2563eb;
   color: #fff;
   border-radius: 50%;
-  padding: 0.5rem 0.7rem;
-  cursor: pointer;
-}
-.dashboard-content {
-  padding: 2rem 2.5rem;
-}
-.dashboard-content h1 {
-  font-size: 2rem;
-  color: #2563eb;
-  margin-bottom: 1rem;
-}
-.dashboard-content p {
-  color: #334155;
-  font-size: 1.1rem;
-}
-@media (max-width: 900px) {
-  .dashboard-main {
-    margin-left: 70px;
-  }
-  .dashboard-navbar {
-    padding: 1rem 0.5rem;
-  }
-  .dashboard-content {
-    padding: 1rem 0.5rem;
-  }
+  padding: 0.5rem 1rem;
 }

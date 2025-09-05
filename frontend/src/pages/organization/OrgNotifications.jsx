@@ -1,47 +1,62 @@
+
+
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import OrganizationSidebar from '../../components/Sidebar/OrganizationSidebar';
 import './OrgNotifications.css';
 
 const OrgNotifications = () => {
   const [notifications, setNotifications] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
+  const [error, setError] = useState('');
   useEffect(() => {
-    const fetchNotifications = async () => {
+    async function fetchNotifications() {
+      setLoading(true);
+      setError('');
       try {
-        const token = localStorage.getItem('token');
-        // Replace with actual endpoint if available
-        const res = await axios.get('/api/organization/notifications', {
-          headers: { Authorization: `Bearer ${token}` }
-        });
-        setNotifications(res.data);
+        const orgId = window.user?.orgId || localStorage.getItem('orgId');
+        if (!orgId) {
+          setError('Organization ID not found.');
+          setLoading(false);
+          return;
+        }
+        const res = await fetch(`/api/org-notifications/${orgId}`);
+        if (!res.ok) throw new Error('Failed to fetch notifications');
+        const data = await res.json();
+        setNotifications(data);
       } catch (err) {
-        setError('Failed to fetch notifications');
-      } finally {
-        setLoading(false);
+        setError('Could not load notifications.');
       }
-    };
+      setLoading(false);
+    }
     fetchNotifications();
   }, []);
 
   return (
-    <div className="notifications-container">
-      <h2>Notifications</h2>
-      {loading ? (
-        <div>Loading...</div>
-      ) : error ? (
-        <div className="error">{error}</div>
-      ) : (
-        <ul className="notifications-list">
-          {notifications.map((note, idx) => (
-            <li key={idx} className="notification-item">
-              <div className="notification-message">{note.message}</div>
-              <div className="notification-date">{note.date}</div>
-            </li>
-          ))}
-        </ul>
-      )}
+    <div className="dashboard-container" style={{ width: '100vw', minHeight: '100vh', display: 'flex' }}>
+      <OrganizationSidebar active="notifications" />
+      <div className="dashboard-main" style={{ width: '100%', maxWidth: 'none', flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'flex-start' }}>
+        <div className="dashboard-content" style={{ width: '100%', maxWidth: 'none', marginLeft: 0 }}>
+          <h2>Notifications</h2>
+          {error && <div style={{ color: 'red', marginBottom: '1rem' }}>{error}</div>}
+          <div className="notifications-list">
+            {loading ? (
+              <div>Loading...</div>
+            ) : notifications.length > 0 ? (
+              notifications.map((note, idx) => (
+                <div key={note._id || idx} className="notification-card">
+                  <span className="notification-bell">🔔</span>
+                  <div>
+                    <div className="notification-message">{note.message}</div>
+                    <div className="notification-time">{new Date(note.createdAt).toLocaleString()}</div>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div style={{color:'#ea580c'}}>No notifications found.</div>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

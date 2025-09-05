@@ -133,10 +133,13 @@ export async function registerOrganDonation(req, res) {
       let photo = '';
       if (req.files) {
         if (req.files.medicalCertificate && req.files.medicalCertificate[0]) {
-          medicalCertificate = req.files.medicalCertificate[0].path;
+          // Save only filename for medical certificate
+          medicalCertificate = req.files.medicalCertificate[0].filename || req.files.medicalCertificate[0].path.split('uploads/').pop();
         }
         if (req.files.photo && req.files.photo[0]) {
-          photo = req.files.photo[0].path;
+          // Save only filename for photo
+          photo = req.files.photo[0].filename || req.files.photo[0].path.split('uploads/').pop();
+          console.log('DEBUG: Saving donor photo filename:', photo);
         }
       }
       let mappedDonationType = 'before_death';
@@ -167,9 +170,19 @@ export async function registerOrganDonation(req, res) {
         medicalCertificate
       });
 
+      // Split organs for 'both' type
+      let livingOrgans = [];
+      let deceasedOrgans = [];
+      if (mappedDonationType === 'both' && Array.isArray(pledge)) {
+        // Living: Kidney, Partial Liver, Blood
+        livingOrgans = pledge.filter(org => ['Kidney','Partial Liver','Blood'].includes(org));
+        // Deceased: Heart, Lungs, Pancreas, Corneas, Full Liver, Intestine, Skin, Bone, Heart Valve
+        deceasedOrgans = pledge.filter(org => ['Heart','Lungs','Pancreas','Corneas','Full Liver','Intestine','Skin','Bone','Heart Valve'].includes(org));
+      }
+      // Save main donation record
       const organDonation = new OrganDonation({
         name,
-        age,
+        age: age !== undefined && age !== null && age !== '' ? Number(age) : undefined,
         gender,
         photo,
         email,
@@ -186,6 +199,33 @@ export async function registerOrganDonation(req, res) {
         createdAt: new Date()
       });
       await organDonation.save();
+      // Route pledges to hospital/organization
+      // Get all hospital and organization emails
+      const hospitals = await User.find({ category: 'Hospital' });
+      const hospitalEmails = hospitals.map(h => h.email);
+      const organizations = await User.find({ category: 'Organization' });
+      const organizationEmails = organizations.map(o => o.email);
+
+      // Email living organ pledges to hospitals
+      if ((mappedDonationType === 'before_death' && pledge.length) || (mappedDonationType === 'both' && livingOrgans.length)) {
+        const mailOptions = {
+          from: GMAIL_USER,
+          to: hospitalEmails,
+          subject: 'New Living Organ Donation Pledge',
+          text: `Donor: ${name}\nEmail: ${email}\nPhone: ${phone}\nOrgans Pledged (Living): ${(mappedDonationType==='both'?livingOrgans:pledge).join(', ')}\nDonation Type: ${donationType}`
+        };
+        transporter.sendMail(mailOptions).catch(err => console.error('Hospital email error:', err));
+      }
+      // Email after-death organ pledges to organizations
+      if ((mappedDonationType === 'after_death' && pledge.length) || (mappedDonationType === 'both' && deceasedOrgans.length)) {
+        const mailOptions = {
+          from: GMAIL_USER,
+          to: organizationEmails,
+          subject: 'New After-Death Organ Donation Pledge',
+          text: `Donor: ${name}\nEmail: ${email}\nPhone: ${phone}\nOrgans Pledged (After Death): ${(mappedDonationType==='both'?deceasedOrgans:pledge).join(', ')}\nDonation Type: ${donationType}`
+        };
+        transporter.sendMail(mailOptions).catch(err => console.error('Organization email error:', err));
+      }
       // Send email to each nominee (optional, does not affect response)
       const nominees = [
         { name: nomineeName1, phone: nomineePhone1, email: nomineeEmail1 },
@@ -216,7 +256,7 @@ export async function getOrganDonationStatus(req, res) {
     const { email } = req.query;
     const organDonation = await OrganDonation.findOne({ email });
     if (!organDonation) {
-      return res.status(404).json({ isRegistered: false });
+      return res.status(200).json({ isRegistered: false });
     }
     res.json({ isRegistered: true, ...organDonation._doc });
   } catch (err) {

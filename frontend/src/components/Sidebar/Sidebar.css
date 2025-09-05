@@ -1,3 +1,4 @@
+/* Donor sidebar (green) */
 .sidebar {
   width: 260px;
   min-height: 100vh;
@@ -37,9 +38,17 @@
 .sidebar nav ul li.active, .sidebar nav ul li:hover {
   background: #16a34a;
 }
-.donor-sidebar {
-  background: #22c55e;
+/* Hospital sidebar (blue) */
+.hospital-sidebar {
+  background: #2563eb;
 }
+.hospital-sidebar .sidebar-logo {
+  color: #fff;
+}
+.hospital-sidebar nav ul li.active, .hospital-sidebar nav ul li:hover {
+  background: #1e40af;
+}
+  
 .hospital-sidebar {
   background: #2563eb;
 }

@@ -13,6 +13,14 @@ import HospitalLivingDonors from './pages/hospital/HospitalLivingDonors';
 import AdminHome from './pages/admin/AdminHome';
 import OrgHome from './pages/organization/OrgHome';
 import OrgAfterDeathDonors from './pages/organization/OrgAfterDeathDonors';
+import HospitalStatus from './pages/hospital/HospitalStatus';
+import HospitalProfile from './pages/hospital/HospitalProfile';
+import HospitalNotifications from './pages/hospital/HospitalNotifications';
+import HospitalSupport from './pages/hospital/HospitalSupport';
+import OrgStatus from './pages/organization/OrgStatus';
+import OrgProfile from './pages/organization/OrgProfile';
+import OrgNotifications from './pages/organization/OrgNotifications';
+import OrgContact from './pages/organization/OrgContact';
 
 
 function App() {
@@ -26,12 +34,24 @@ function App() {
         <Route path="/donor/status" element={<DonorStatus />} />
         <Route path="/donor/profile" element={<DonorProfile />} />
         <Route path="/donor/notifications" element={<DonorNotifications />} />
+  <Route path="/hospital/home" element={<HospitalHome />} />
+  <Route path="/hospital/requests-status" element={<HospitalStatus />} />
         <Route path="/donor/support" element={<DonorSupport />} />
+                <Route path="/hospital" element={<HospitalHome />} />
+
+        <Route path="/hospital/status" element={<HospitalStatus />} />
+        <Route path="/hospital/profile" element={<HospitalProfile />} />
+        <Route path="/hospital/notifications" element={<HospitalNotifications />} />
+        <Route path="/hospital/support" element={<HospitalSupport />} />
   <Route path="/hospital/living-donors" element={<HospitalLivingDonors />} />
-  <Route path="/hospital/*" element={<HospitalHome />} />
         <Route path="/admin/*" element={<AdminHome />} />
+         <Route path="/organization/status" element={<OrgStatus />} />
+        <Route path="/organization/profile" element={<OrgProfile />} />
+        <Route path="/organization/notifications" element={<OrgNotifications />} />
+        <Route path="/organization/support" element={<OrgContact />} />
   <Route path="/organization/after-death-donors" element={<OrgAfterDeathDonors />} />
-  <Route path="/organization/*" element={<OrgHome />} />
+  <Route path="/organization" element={<OrgHome />} />
+  
       </Routes>
     </Router>
   );

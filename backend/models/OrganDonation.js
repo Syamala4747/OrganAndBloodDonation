@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 
 const organDonationSchema = new mongoose.Schema({
   name: { type: String, required: true },
+  age: { type: Number },
   email: { type: String, required: true },
   phone: { type: String, required: true },
   bloodGroup: { type: String, required: true },

@@ -245,39 +245,81 @@ const DonorHome = () => {
                   <label style={{fontWeight:'500'}}>Profile Photo</label>
                   <div style={{border:'1.5px dashed #cbd5e1', borderRadius:'1.2rem', padding:'1.2rem', textAlign:'center', marginBottom:'1rem', cursor:'pointer'}} onClick={()=>photoInputRef.current.click()}>
                     {form.photoPreview ? <img src={form.photoPreview} alt="Profile" style={{width:'80px', height:'80px', borderRadius:'50%', objectFit:'cover'}} /> : <span style={{color:'#94a3b8', fontSize:'2.2rem'}}>Click to upload photo</span>}
-                    <input type="file" accept="image/*" ref={photoInputRef} style={{display:'none'}} onChange={handlePhotoUpload} />
+                    <input type="file" accept="image/*" ref={photoInputRef} style={{display:'none'}} onChange={handlePhotoUpload} required />
+                      {/* Debug: Show photo file and preview URL */}
+                      <div style={{marginTop:'0.5rem', fontSize:'0.95rem', color:'#f87171'}}>
+                        <b>Debug:</b> photo: {form.photo && form.photo.name ? form.photo.name : String(form.photo)}<br />
+                        photoPreview: {form.photoPreview ? form.photoPreview : 'none'}
+                      </div>
                   </div>
                   <label style={{fontWeight:'500'}}>Medical Certificate (Optional)</label>
                   <div style={{border:'1.5px dashed #cbd5e1', borderRadius:'1.2rem', padding:'1.2rem', textAlign:'center', marginBottom:'1rem', cursor:'pointer'}} onClick={()=>medicalInputRef.current.click()}>
                     {form.medicalCertificate ? <span style={{color:'#22c55e'}}>Uploaded: {form.medicalCertificate.name}</span> : <span style={{color:'#94a3b8'}}>Upload medical certificate (PDF, JPG, PNG)</span>}
                     <input type="file" accept=".pdf,image/*" ref={medicalInputRef} style={{display:'none'}} onChange={e=>setForm({...form, medicalCertificate:e.target.files[0]})} />
                   </div>
-                  <label style={{fontWeight:'500'}}>Organ Pledge</label>
-                  <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:'0.7rem', marginBottom:'1rem'}}>
-                    {['Kidney','Heart','Liver','Lungs','Corneas','Pancreas','Blood'].map(org=>(
-                      <label key={org} style={{display:'flex', alignItems:'center', gap:'0.5rem', background:'#f3f4f6', borderRadius:'1rem', padding:'0.5rem 1rem', cursor:'pointer'}}>
-                        <input type="checkbox" checked={form.pledge.includes(org)} onChange={e=>handlePledgeChange(org,e.target.checked)} /> {org}
-                      </label>
-                    ))}
-                  </div>
                   <label style={{fontWeight:'500'}}>Donation Type</label>
                   <div style={{display:'flex', gap:'1rem', marginBottom:'1rem'}}>
                     <label style={donationTypeLabel(form.donationType==='Before Death')}>
-                      <input type="radio" name="donationType" checked={form.donationType==='Before Death'} onChange={()=>setForm({...form, donationType:'Before Death'})} required />
+                      <input type="radio" name="donationType" checked={form.donationType==='Before Death'} onChange={()=>setForm({...form, donationType:'Before Death', pledge:[]})} required />
                       <span style={{marginLeft:'0.5rem'}}>Before Death (Living Donation)</span>
                       <div style={{fontSize:'0.95rem', color:'#64748b'}}>Donate organs like kidney, partial liver while alive</div>
                     </label>
                     <label style={donationTypeLabel(form.donationType==='Order Pledge')}>
-                      <input type="radio" name="donationType" checked={form.donationType==='Order Pledge'} onChange={()=>setForm({...form, donationType:'Order Pledge'})} required />
+                      <input type="radio" name="donationType" checked={form.donationType==='Order Pledge'} onChange={()=>setForm({...form, donationType:'Order Pledge', pledge:[]})} required />
                       <span style={{marginLeft:'0.5rem'}}>Order Pledge (Deceased Donation)</span>
                       <div style={{fontSize:'0.95rem', color:'#64748b'}}>Donate all selected organs after death</div>
                     </label>
                     <label style={donationTypeLabel(form.donationType==='Both')}>
-                      <input type="radio" name="donationType" checked={form.donationType==='Both'} onChange={()=>setForm({...form, donationType:'Both'})} required />
+                      <input type="radio" name="donationType" checked={form.donationType==='Both'} onChange={()=>setForm({...form, donationType:'Both', pledge:[]})} required />
                       <span style={{marginLeft:'0.5rem'}}>Both</span>
                       <div style={{fontSize:'0.95rem', color:'#64748b'}}>Pledge for both living and deceased donation</div>
                     </label>
                   </div>
+                  {/* Organ selection below donation type, conditional rendering */}
+                  {form.donationType==='Before Death' && (
+                    <>
+                      <label style={{fontWeight:'500'}}>Organs I am willing to donate while alive</label>
+                      <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:'0.7rem', marginBottom:'1rem'}}>
+                        {['Kidney','Partial Liver','Blood'].map(org=>(
+                          <label key={org} style={{display:'flex', alignItems:'center', gap:'0.5rem', background:'#f3f4f6', borderRadius:'1rem', padding:'0.5rem 1rem', cursor:'pointer'}}>
+                            <input type="checkbox" checked={form.pledge.includes(org)} onChange={e=>handlePledgeChange(org,e.target.checked)} /> {org}
+                          </label>
+                        ))}
+                      </div>
+                    </>
+                  )}
+                  {form.donationType==='Order Pledge' && (
+                    <>
+                      <label style={{fontWeight:'500'}}>Organs I am willing to donate after death</label>
+                      <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:'0.7rem', marginBottom:'1rem'}}>
+                        {['Heart','Lungs','Pancreas','Corneas','Full Liver','Intestine','Skin','Bone','Heart Valve'].map(org=>(
+                          <label key={org} style={{display:'flex', alignItems:'center', gap:'0.5rem', background:'#f3f4f6', borderRadius:'1rem', padding:'0.5rem 1rem', cursor:'pointer'}}>
+                            <input type="checkbox" checked={form.pledge.includes(org)} onChange={e=>handlePledgeChange(org,e.target.checked)} /> {org}
+                          </label>
+                        ))}
+                      </div>
+                    </>
+                  )}
+                  {form.donationType==='Both' && (
+                    <>
+                      <label style={{fontWeight:'500'}}>Organs I am willing to donate while alive</label>
+                      <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:'0.7rem', marginBottom:'1rem'}}>
+                        {['Kidney','Partial Liver','Blood'].map(org=>(
+                          <label key={org} style={{display:'flex', alignItems:'center', gap:'0.5rem', background:'#f3f4f6', borderRadius:'1rem', padding:'0.5rem 1rem', cursor:'pointer'}}>
+                            <input type="checkbox" checked={form.pledge.includes(org)} onChange={e=>handlePledgeChange(org,e.target.checked)} /> {org}
+                          </label>
+                        ))}
+                      </div>
+                      <label style={{fontWeight:'500'}}>Organs I am willing to donate after death</label>
+                      <div style={{display:'grid', gridTemplateColumns:'1fr 1fr', gap:'0.7rem', marginBottom:'1rem'}}>
+                        {['Heart','Lungs','Pancreas','Corneas','Full Liver','Intestine','Skin','Bone','Heart Valve'].map(org=>(
+                          <label key={org} style={{display:'flex', alignItems:'center', gap:'0.5rem', background:'#f3f4f6', borderRadius:'1rem', padding:'0.5rem 1rem', cursor:'pointer'}}>
+                            <input type="checkbox" checked={form.pledge.includes(org)} onChange={e=>handlePledgeChange(org,e.target.checked)} /> {org}
+                          </label>
+                        ))}
+                      </div>
+                    </>
+                  )}
                   <div style={{marginBottom:'1rem'}}>
                     <div style={{display:'flex', gap:'1rem', marginBottom:'0.7rem'}}>
                       <div style={{flex:1}}>
