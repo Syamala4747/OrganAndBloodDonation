@@ -32,21 +32,23 @@ const HospitalNotifications = () => {
 
   return (
     <div className="dashboard-container" style={{ width: '100vw', minHeight: '100vh', display: 'flex' }}>
-      <HospitalSidebar active="notifications" />
-      <div className="dashboard-main" style={{ width: '100%', maxWidth: 'none', flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'flex-start' }}>
-        <div className="dashboard-content" style={{ width: '100%', maxWidth: 'none', marginLeft: 0 }}>
-          <h2>Notifications</h2>
+      <div style={{position:'fixed', left:0, top:0, height:'100vh', width:'260px', zIndex:10}}>
+        <HospitalSidebar active="notifications" />
+      </div>
+      <div className="dashboard-main" style={{marginLeft:'260px', width: 'calc(100vw - 260px)', maxWidth: 'none', flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'flex-start' }}>
+        <div className="dashboard-content" style={{background:'#fff', borderRadius:'1.2rem', boxShadow:'0 2px 12px #e0e7ef', padding:'1.2rem', margin:'1.2rem 0', maxWidth:'600px', width:'100%'}}>
+          <h2 style={{color:'#2563eb', fontWeight:'bold', fontSize:'1.5rem', marginBottom:'1rem'}}>Notifications</h2>
           {error && <div style={{ color: 'red', marginBottom: '1rem' }}>{error}</div>}
-          <div className="notifications-list">
+          <div className="notifications-list" style={{display:'flex',flexDirection:'column',gap:'0.7rem'}}>
             {loading ? (
               <div>Loading...</div>
             ) : notifications.length > 0 ? (
               notifications.map((note, idx) => (
-                <div key={note._id || idx} className="notification-card">
-                  <span className="notification-bell">🔔</span>
-                  <div>
-                    <div className="notification-message">{note.message}</div>
-                    <div className="notification-time">{new Date(note.createdAt).toLocaleString()}</div>
+                <div key={note._id || idx} className="notification-card" style={{background:'#eaf6fb',borderRadius:'0.7rem',padding:'0.7rem 1rem',boxShadow:'0 1px 4px #e0e7ef',display:'flex',alignItems:'center',gap:'1rem'}}>
+                  <span className="notification-bell" style={{fontSize:'1.3rem',color:'#2563eb'}}>🔔</span>
+                  <div style={{flex:1}}>
+                    <div className="notification-message" style={{fontWeight:'500',fontSize:'1.08rem',color:'#222'}}>{note.message}</div>
+                    <div className="notification-time" style={{fontSize:'0.97rem',color:'#2563eb'}}>{new Date(note.createdAt).toLocaleString()}</div>
                   </div>
                 </div>
               ))

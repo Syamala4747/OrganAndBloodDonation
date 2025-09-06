@@ -49,14 +49,15 @@
   flex-direction: column;
   align-items: stretch;
 }
-.dashboard-content h1 {
-  font-size: 2rem;
-  color: #1e293b;
-  margin-bottom: 1rem;
-}
-.dashboard-content p {
-  color: #334155;
-  font-size: 1.1rem;
+.dashboard-content {
+  background: #fff;
+  border-radius: 1.2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 2.2rem 2.2rem 2.2rem 2.2rem;
+  margin: 2rem 2.5vw;
+  max-width: none;
+  width: calc(100% - 5vw);
+  min-height: 400px;
 }
 @media (max-width: 900px) {
   .dashboard-main {

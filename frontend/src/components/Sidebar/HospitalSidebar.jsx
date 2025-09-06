@@ -18,11 +18,7 @@ const HospitalSidebar = ({ active }) => (
             <span>🫀</span> Living Donors
           </Link>
         </li>
-        <li className={active === 'requests' ? 'active' : ''}>
-          <Link to="/hospital/requests-status" style={{textDecoration:'none',color:'inherit',display:'flex',alignItems:'center',gap:'0.5rem'}}>
-            <span>📊</span> Requests Status
-          </Link>
-        </li>
+  {/* Requests Status page link removed as per user request */}
         <li className={active === 'notifications' ? 'active' : ''}>
           <Link to="/hospital/notifications" style={{textDecoration:'none',color:'inherit',display:'flex',alignItems:'center',gap:'0.5rem'}}>
             <span>🔔</span> Notifications

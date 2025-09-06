@@ -15,7 +15,7 @@ const DonorSupport = () => {
     e.preventDefault();
     setStatus('Sending...');
     try {
-      await axios.post('/api/support/email', { ...form, to: 'syamala7072@gmail.com' });
+      await axios.post('/api/support/email', { ...form, to: 'lifeshare4747@gmail.com' });
       setStatus('Your query has been sent successfully!');
       setForm({ name: '', email: '', message: '' });
     } catch (err) {

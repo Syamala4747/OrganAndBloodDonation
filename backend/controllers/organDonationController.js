@@ -17,7 +17,13 @@ export async function getLivingDonors(req, res) {
         { donationType: 'both' }
       ]
     });
-    res.json(livingDonors);
+    // Map donors to include photo and medicalCertificate URLs
+    const mappedDonors = livingDonors.map(donor => ({
+      ...donor._doc,
+      photo: donor.photo ? donor.photo : '',
+      medicalCertificate: donor.medicalCertificate ? donor.medicalCertificate : ''
+    }));
+    res.json(mappedDonors);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

@@ -8,18 +8,18 @@ const OrganizationSidebar = ({ active }) => (
     <nav>
       <ul>
         <li className={active === 'home' ? 'active' : ''}>
-          <Link to="/organization/home" style={{textDecoration:'none',color:'inherit',display:'flex',alignItems:'center',gap:'0.5rem'}}>
+          <Link to="/organization" style={{textDecoration:'none',color:'inherit',display:'flex',alignItems:'center',gap:'0.5rem'}}>
             <span>🏠</span> Home
           </Link>
         </li>
         <li className={active === 'after-death-donors' ? 'active' : ''}>
           <Link to="/organization/after-death-donors" style={{textDecoration:'none',color:'inherit',display:'flex',alignItems:'center',gap:'0.5rem'}}>
-            <span>⚰️</span> After-Death Donors
+            <span>⚰️</span>Donors
           </Link>
         </li>
         <li className={active === 'notifications' ? 'active' : ''}>
           <Link to="/organization/notifications" style={{textDecoration:'none',color:'inherit',display:'flex',alignItems:'center',gap:'0.5rem'}}>
-            <span>🔔</span> Notifications
+            <span>🔔</span> Profile
           </Link>
         </li>
         <li className={active === 'contact' ? 'active' : ''}>

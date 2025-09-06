@@ -118,18 +118,33 @@ export const rejectUser = async (req, res) => {
 // Analytics
 export const getAnalytics = async (req, res) => {
   try {
-    // Example: donors by blood group
+    // Donors by blood group
     const bloodGroups = await Donor.aggregate([
       { $group: { _id: '$bloodType', count: { $sum: 1 } } }
     ]);
-    // Example: most requested organ
+
+    // Most requested organ
     const organs = await Donor.aggregate([
       { $unwind: '$organsPledged' },
       { $group: { _id: '$organsPledged', count: { $sum: 1 } } },
       { $sort: { count: -1 } },
       { $limit: 1 }
     ]);
-    res.json({ bloodGroups, mostRequestedOrgan: organs[0]?._id || null });
+
+    // Organs donors are willing to donate before death
+    const beforeDeathDonors = await Donor.find({ donationType: 'before_death' }, 'organsPledged');
+    const beforeDeathOrgans = [...new Set(beforeDeathDonors.flatMap(d => d.organsPledged))];
+
+    // Organs donors are willing to donate after death
+    const afterDeathDonors = await Donor.find({ donationType: 'after_death' }, 'organsPledged');
+    const afterDeathOrgans = [...new Set(afterDeathDonors.flatMap(d => d.organsPledged))];
+
+    res.json({
+      bloodGroups,
+      mostRequestedOrgan: organs[0]?._id || null,
+      beforeDeathOrgans,
+      afterDeathOrgans
+    });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

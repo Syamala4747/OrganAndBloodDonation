@@ -13,7 +13,7 @@ export async function sendSupportEmail(req, res) {
 
     await transporter.sendMail({
       from: process.env.GMAIL_USER,
-      to: 'syamala7072@gmail.com',
+      to: 'lifeshare4747@gmail.com',
       subject: `Support Query from ${name}`,
       text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`
     });
