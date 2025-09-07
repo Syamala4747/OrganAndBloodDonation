@@ -26,10 +26,8 @@ const HospitalSupport = () => {
 
   return (
   <div className="dashboard-container" style={{width:'100vw', minHeight:'100vh', display:'flex'}}>
-      <div style={{position:'fixed', left:0, top:0, height:'100vh', width:'260px', zIndex:10}}>
-        <HospitalSidebar active="support" />
-      </div>
-      <div className="dashboard-main" style={{marginLeft:'260px', width: 'calc(100vw - 260px)', maxWidth: 'none', flex: 1, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', minHeight:'100vh'}}>
+  <HospitalSidebar active="support" />
+  <div className="main-content dashboard-main" style={{width: '100%', maxWidth: 'none', flex: 1, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', minHeight:'100vh'}}>
         <div className="dashboard-content" style={{background:'#fff', borderRadius:'1.2rem', boxShadow:'0 2px 12px #e0e7ef', padding:'2.5rem', margin:'2rem 0', maxWidth:'600px', width:'100%', display:'flex', flexDirection:'column', alignItems:'center'}}>
           <h2 style={{color:'#2563eb', fontWeight:'bold', fontSize:'1.5rem', marginBottom:'1rem'}}>Contact & Support</h2>
           <div style={{background:'#eaf6fb', borderRadius:'0.7rem', padding:'0.7rem', margin:'0.7rem 0', color:'#2563eb', fontWeight:'500', fontSize:'1.08rem', textAlign:'center', width:'100%'}}>

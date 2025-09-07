@@ -6,7 +6,7 @@ const OrgHome = () => {
   return (
     <div className="dashboard-container">
       <OrganizationSidebar active="home" />
-      <div className="dashboard-main">
+  <div className="dashboard-main" style={{marginLeft:0, paddingLeft:0}}>
   {/* Top navbar removed for cleaner layout */}
         <div className="dashboard-content" style={{minHeight:'100vh', width:'100%', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'flex-start', background:'#f7faff'}}>
           <h1 style={{color:'#2563eb', fontWeight:'bold', fontSize:'2.2rem', marginTop:'2rem'}}>Welcome to Organization Panel</h1>

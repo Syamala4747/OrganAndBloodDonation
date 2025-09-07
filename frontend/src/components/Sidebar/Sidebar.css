@@ -1,3 +1,144 @@
+/* Organization sidebar responsive styles */
+@media (max-width: 700px) {
+  .organization-sidebar {
+    display: none !important;
+  }
+  .organization-mobile-navbar {
+    display: flex !important;
+    flex-direction: column;
+    width: 100vw;
+    background: #ea580c;
+    padding: 0.7rem 1.2rem;
+    box-shadow: 0 2px 8px #e0e7ef;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+  }
+  .organization-mobile-navbar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .organization-mobile-menu-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+  }
+  .organization-mobile-menu {
+    background: #fff;
+    border-radius: 0.7rem;
+    box-shadow: 0 2px 8px #e0e7ef;
+    margin-top: 0.7rem;
+    padding: 0.7rem 0;
+    list-style: none;
+    width: 100%;
+  }
+  .organization-mobile-menu li {
+    padding: 0.7rem 1.2rem;
+    border-bottom: 1px solid #e0e7ef;
+  }
+  .organization-mobile-menu li:last-child {
+    border-bottom: none;
+  }
+  .organization-mobile-menu li.active {
+    background: #ea580c;
+    color: #fff;
+    border-radius: 0.5rem;
+  }
+  .organization-mobile-menu a {
+    color: #222;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
+
+@media (min-width: 701px) {
+  .organization-mobile-navbar {
+    display: none !important;
+  }
+}
+/* Main content margin for sidebar (desktop) */
+.main-content {
+  margin-left: 260px;
+}
+@media (max-width: 900px) {
+  .main-content {
+    margin-left: 70px;
+  }
+}
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+    margin-top: 70px;
+  }
+}
+/* Hide mobile navbar on desktop, show on mobile */
+.donor-mobile-navbar {
+  display: none;
+}
+@media (max-width: 768px) {
+  .donor-sidebar {
+    display: none !important;
+  }
+  .donor-mobile-navbar {
+    display: block !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    z-index: 101;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border-radius: 0;
+  }
+  .donor-mobile-navbar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+  }
+  .donor-mobile-menu-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  .donor-mobile-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0.5rem 1.5rem 1rem 1.5rem;
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    border-radius: 0 0 1rem 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .donor-mobile-menu li {
+    padding: 0.8rem 0;
+    font-size: 1.1rem;
+    color: #fff !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .donor-mobile-menu li:last-child {
+    border-bottom: none;
+  }
+  .donor-mobile-menu li.active, .donor-mobile-menu li:hover {
+    background: #16a34a;
+    border-radius: 0.5rem;
+  }
+  .donor-mobile-menu li a {
+    color: #fff !important;
+    font-weight: bold;
+  }
+  .donor-mobile-menu li span,
+  .donor-mobile-menu li svg {
+    color: #fff !important;
+  }
+}
 /* Donor sidebar (green) */
 .sidebar {
   width: 260px;
@@ -12,6 +153,21 @@
   left: 0;
   top: 0;
   z-index: 100;
+}
+/* Main content margin for sidebar (desktop) */
+.main-content {
+  margin-left: 260px;
+}
+@media (max-width: 900px) {
+  .main-content {
+    margin-left: 70px;
+  }
+}
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+    margin-top: 70px;
+  }
 }
 .sidebar-logo {
   font-size: 1.5rem;
@@ -52,11 +208,149 @@
 .hospital-sidebar {
   background: #2563eb;
 }
+/* Hospital mobile navbar styles */
+.hospital-mobile-navbar {
+  display: none;
+}
+/* Main content margin for hospital mobile navbar */
+@media (max-width: 768px) {
+  .main-content {
+    margin-top: 70px;
+  }
+}
+@media (max-width: 768px) {
+  .hospital-sidebar {
+    display: none !important;
+  }
+  .hospital-mobile-navbar {
+    display: block !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    z-index: 101;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border-radius: 0;
+  }
+  .hospital-mobile-navbar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+  }
+  .hospital-mobile-menu-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  .hospital-mobile-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0.5rem 1.5rem 1rem 1.5rem;
+    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    border-radius: 0 0 1rem 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .hospital-mobile-menu li {
+    padding: 0.8rem 0;
+    font-size: 1.1rem;
+    color: #fff !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .hospital-mobile-menu li:last-child {
+    border-bottom: none;
+  }
+  .hospital-mobile-menu li.active, .hospital-mobile-menu li:hover {
+    background: #1e40af;
+    border-radius: 0.5rem;
+  }
+  .hospital-mobile-menu li a {
+    color: #fff !important;
+    font-weight: bold;
+  }
+  .hospital-mobile-menu li span,
+  .hospital-mobile-menu li svg {
+    color: #fff !important;
+  }
+}
 .admin-sidebar {
-  background: #1e293b;
+  background: linear-gradient(135deg, #14b8a6 0%, #38bdf8 100%);
 }
 .organization-sidebar {
   background: #f97316;
+}
+/* Responsive: Hide sidebar, show top navbar on mobile */
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+  .admin-mobile-navbar {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(135deg, #14b8a6 0%, #38bdf8 100%);
+    z-index: 101;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .admin-mobile-navbar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+  }
+  .admin-mobile-menu-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  .admin-mobile-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0.5rem 1.5rem 1rem 1.5rem;
+    background: linear-gradient(135deg, #14b8a6 0%, #38bdf8 100%);
+    border-radius: 0 0 1rem 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .admin-mobile-menu li {
+    padding: 0.8rem 0;
+  font-size: 1.1rem;
+  color: #fff !important;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .admin-mobile-menu li a {
+    color: #fff !important;
+    font-weight: bold;
+  }
+  .admin-mobile-menu li span,
+  .admin-mobile-menu li svg {
+    color: #fff !important;
+  }
+  }
+  .admin-mobile-menu li:last-child {
+    border-bottom: none;
+  }
+  .admin-mobile-menu li.active, .admin-mobile-menu li:hover {
+    background: #14b8a6;
+    border-radius: 0.5rem;
+  }
+}
+
+/* Desktop: Show sidebar, hide mobile navbar */
+/* Desktop: Show sidebar, hide mobile navbar */
+.admin-mobile-navbar {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+  .admin-mobile-navbar {
+    display: block;
+  }
 }
 @media (max-width: 900px) {
   .sidebar {

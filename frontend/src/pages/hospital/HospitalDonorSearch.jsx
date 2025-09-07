@@ -17,7 +17,7 @@ import HospitalSidebar from '../../components/Sidebar/HospitalSidebar';
 const HospitalDonorSearch = () => (
   <div className="dashboard-container">
     <HospitalSidebar active="donor-search" />
-    <div className="dashboard-main">
+    <div className="main-content dashboard-main">
       <nav className="dashboard-navbar">
         <input className="dashboard-search" placeholder="Search donors..." />
         <div className="dashboard-actions">

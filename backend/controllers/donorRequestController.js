@@ -33,22 +33,14 @@ export const createRequest = async (req, res) => {
     // Send notification and email to donor
     // Get hospital details
   const hospitalDoc = await Hospital.findById(hospitalId).populate('user');
-  // Always prefer Hospital fields, fallback to User fields, and fetch User directly if missing
+  // Only use real hospital details, error if missing
   let hospitalName = hospitalDoc?.name;
   let licenseId = hospitalDoc?.licenseId;
   let address = hospitalDoc?.address;
   let contact = hospitalDoc?.contact;
   let hospitalEmail = hospitalDoc?.user?.email;
-  // If any field is missing, fetch User directly
   if (!hospitalName || !licenseId || !address || !contact || !hospitalEmail) {
-    const User = (await import('../models/User.js')).default;
-    const userDoc = await User.findById(hospitalDoc?.user?._id);
-    hospitalName = hospitalName || userDoc?.name || userDoc?.username || 'Default Hospital Name';
-    licenseId = licenseId || userDoc?.licenseId || 'DefaultLicense123';
-    address = address || userDoc?.address || 'Default Address';
-    contact = contact || userDoc?.contact || userDoc?.contactNumber || '9999999999';
-    hospitalEmail = hospitalEmail || userDoc?.email || 'lifeshare4747@gmail.com';
-    console.log('UserDoc fallback:', userDoc);
+    return res.status(400).json({ message: 'Hospital details incomplete. Please update your hospital profile before sending requests.' });
   }
   // For debugging, log the final values
   console.log('HospitalDoc:', hospitalDoc);

@@ -42,7 +42,7 @@ const OrgAfterDeathDonors = () => {
   return (
     <div className="dashboard-container" style={{minHeight:'100vh', width:'100vw', background:'#f7faff'}}>
       <OrganizationSidebar active="after-death-donors" />
-      <div className="dashboard-main" style={{width:'calc(100vw - 260px)', marginLeft:'260px', maxWidth:'none', padding:'2rem 0'}}>
+  <div className="dashboard-main" style={{width:'100%', marginLeft:0, maxWidth:'none', padding:'2rem 0'}}>
         <div className="dashboard-content" style={{width:'100%', minHeight:'100vh', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'flex-start'}}>
           <h1 className="after-death-donors-title" style={{color:'#f97316', fontWeight:'bold', fontSize:'2rem', marginBottom:'2rem'}}>After-Death Pledged Donors</h1>
           {error && <div className="after-death-donors-error">{error}</div>}

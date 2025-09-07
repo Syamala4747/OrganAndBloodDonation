@@ -10,10 +10,10 @@
   flex-direction: column;
 }
 .dashboard-navbar {
-  display: flex;
+  margin-left: 260px;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 2rem;
+  padding: 2rem 2.5rem;
   background: #fff;
   box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
@@ -55,12 +55,12 @@
 }
 @media (max-width: 900px) {
   .dashboard-main {
-    margin-left: 70px;
+    margin-left: 0 !important;
   }
   .dashboard-navbar {
     padding: 1rem 0.5rem;
   }
   .dashboard-content {
-    padding: 1rem 0.5rem;
+    padding: 1rem 0.2rem !important;
   }
 }

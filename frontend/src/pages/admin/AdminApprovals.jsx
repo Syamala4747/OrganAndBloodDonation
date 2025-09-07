@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './AdminApprovals.css';
@@ -51,77 +50,26 @@ const AdminApprovals = () => {
   return (
     <div className="dashboard-content">
       <h1 style={{fontWeight:'bold', fontSize:'2.2rem', marginBottom:'1.2rem'}}>Pending Approvals</h1>
-  <div style={{padding:'2rem 1.2rem', width:'100%'}}>
+      <div style={{padding:'2rem 1.2rem', width:'100%'}}>
         {error && <div style={{ color: 'red', marginBottom: '1rem' }}>{error}</div>}
         {loading ? (
           <div>Loading...</div>
         ) : pending.length === 0 ? (
           <div>No pending requests.</div>
         ) : (
-          <table className="approvals-table">
-            <thead>
-              <tr>
-                <th>Username</th>
-                <th>Role</th>
-                <th>Email</th>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Address</th>
-                <th>Contact</th>
-                <th>Proof of Evidence</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {pending.map((item) => (
-                <tr key={item._id}>
-                  <td>{item.username}</td>
-                  <td>{item.category}</td>
-                  <td>{item.email}</td>
-                  <td>{item.name || '-'}</td>
-                  <td>{item.type || '-'}</td>
-                  <td>{item.address || '-'}</td>
-                  <td>{item.contact || '-'}</td>
-                  <td>
-                    {item.verificationDocs && item.verificationDocs.length > 0 && item.verificationDocs[0] ? (
-                      <>
-                        {item.verificationDocs[0].match(/\.(jpg|jpeg|png|gif)$/i) ? (
-                          <button
-                            onClick={() => window.open(`http://localhost:5000/uploads/${item.verificationDocs[0].replace(/^.*uploads[\\\/]/, '')}`, '_blank')}
-                            style={{ color: 'blue', textDecoration: 'underline', background: 'none', border: 'none', cursor: 'pointer' }}
-                          >
-                            Click to view photo
-                          </button>
-                        ) : item.verificationDocs[0].match(/\.pdf$/i) ? (
-                          <a
-                            href={`http://localhost:5000/uploads/${item.verificationDocs[0].replace(/^.*uploads[\\\/]/, '')}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{ color: 'blue', textDecoration: 'underline', background: 'none', border: 'none', cursor: 'pointer' }}
-                          >
-                            Click to view PDF
-                          </a>
-                        ) : (
-                          <button
-                            onClick={() => window.open(`http://localhost:5000/uploads/${item.verificationDocs[0].split('/').pop()}`, '_blank')}
-                            style={{ color: 'blue', textDecoration: 'underline', background: 'none', border: 'none', cursor: 'pointer' }}
-                          >
-                            Click to view file
-                          </button>
-                        )}
-                      </>
-                    ) : 'No file'}
-                  </td>
-                  <td>{item.status}</td>
-                  <td>
-                    <button className="approve-btn" onClick={() => handleAction(item._id, 'approve')}>✅ Approve</button>
-                    <button className="reject-btn" onClick={() => handleAction(item._id, 'reject')}>❌ Reject</button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <div className="approvals-list" style={{display:'flex', gap:'2rem', flexWrap:'wrap', marginTop:'2rem'}}>
+            {pending.map((item, idx) => (
+              <div key={item._id || idx} style={{flex:'1', minWidth:'260px', background:'rgba(240,255,244,0.85)', borderRadius:'1.2rem', boxShadow:'0 2px 12px rgba(34,197,94,0.08)', padding:'2rem 1.2rem', textAlign:'center'}}>
+                <div style={{fontWeight:'bold', fontSize:'1.2rem', color:'#16a34a', marginBottom:'0.7rem'}}>{item.name || item.hospitalName || item.organizationName}</div>
+                <div style={{fontSize:'1.05rem', color:'#222', marginBottom:'0.5rem'}}>{item.email}</div>
+                <div style={{fontSize:'1rem', color:'#334155'}}>{item.category}</div>
+                <div style={{marginTop:'1rem'}}>
+                  <button className="approve-btn" onClick={()=>handleAction(item._id,'approve')}>Approve</button>
+                  <button className="reject-btn" onClick={()=>handleAction(item._id,'reject')}>Reject</button>
+                </div>
+              </div>
+            ))}
+          </div>
         )}
       </div>
     </div>

@@ -24,8 +24,8 @@ const HospitalStatus = () => {
 
   return (
     <div className="dashboard-container" style={{width:'100vw', minHeight:'100vh', display:'flex'}}>
-      <HospitalSidebar active="status" />
-      <div className="dashboard-main" style={{width: '100%', maxWidth: 'none', flex: 1, display:'flex', flexDirection:'column', alignItems:'flex-start', justifyContent:'flex-start'}}>
+  <HospitalSidebar active="status" />
+  <div className="main-content dashboard-main" style={{width: '100%', maxWidth: 'none', flex: 1, display:'flex', flexDirection:'column', alignItems:'flex-start', justifyContent:'flex-start'}}>
         <div className="dashboard-content" style={{width: '100%', maxWidth: 'none', marginLeft:0}}>
           <h2>Status</h2>
           {loading ? (

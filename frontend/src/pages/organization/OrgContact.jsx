@@ -27,7 +27,7 @@ const OrgContact = () => {
   return (
     <div className="dashboard-container" style={{width:'100vw', minHeight:'100vh', display:'flex'}}>
       <OrganizationSidebar active="contact" />
-      <div className="dashboard-main" style={{width: '100%', maxWidth: 'none', flex: 1, display:'flex', flexDirection:'column', alignItems:'flex-start', justifyContent:'flex-start'}}>
+  <div className="dashboard-main" style={{width: '100%', maxWidth: 'none', flex: 1, display:'flex', flexDirection:'column', alignItems:'flex-start', justifyContent:'flex-start', marginLeft:0, paddingLeft:0}}>
         <div className="dashboard-content" style={{width: '100%', maxWidth: 'none', marginLeft:0}}>
           <h2 style={{color:'#2563eb', fontWeight:'bold', fontSize:'1.5rem', marginBottom:'1rem'}}>Contact & Support</h2>
           <div style={{background:'#eaf6fb', borderRadius:'0.7rem', padding:'0.7rem', margin:'0.7rem 0', color:'#2563eb', fontWeight:'500', fontSize:'1.08rem', textAlign:'center', width:'100%'}}>

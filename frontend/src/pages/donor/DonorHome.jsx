@@ -163,10 +163,7 @@ const DonorHome = () => {
       <DonorSidebar active="home" />
       <div className="dashboard-main">
         <nav className="dashboard-navbar">
-          <div className="dashboard-actions">
-            <span className="dashboard-bell">🔔</span>
-            <div className="dashboard-profile">👤</div>
-          </div>
+          {/* ...existing code... */}
         </nav>
         <div className="dashboard-content">
           <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:'1.5rem'}}>

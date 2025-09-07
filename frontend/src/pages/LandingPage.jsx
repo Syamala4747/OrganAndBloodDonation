@@ -2,12 +2,14 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LandingPage.css';
 import heartImg from '../assets/image.png';
+import donorImg from '../assets/2.png';
+import awarenessImg from '../assets/3.png';
 
 const LandingPage = () => {
   const navigate = useNavigate();
   return (
-    <>
-      <header style={{width:'100%', background:'#fff', borderBottom:'1px solid #f0f6fa', padding:'0.5rem 0', marginBottom:'0', position:'relative', zIndex:2, display:'flex', justifyContent:'center'}}>
+  <>
+  <header className="fade-in" style={{width:'100%', background:'#fff', borderBottom:'1px solid #f0f6fa', padding:'0.5rem 0', marginBottom:'0', position:'relative', zIndex:2, display:'flex', justifyContent:'center'}}>
         <div style={{width:'100%', maxWidth:'1400px', display:'flex', alignItems:'center', justifyContent:'space-between', padding:'0.5rem 2rem'}}>
           <div style={{display:'flex', alignItems:'center', gap:'0.5rem'}}>
             <span style={{color:'#ef4444', fontSize:'1.7rem', fontWeight:'bold'}}>❤</span>
@@ -16,9 +18,9 @@ const LandingPage = () => {
           <button style={{background:'#2563eb', color:'#fff', border:'none', borderRadius:'1.2rem', padding:'0.5rem 1.5rem', fontWeight:'bold', fontSize:'1rem', boxShadow:'0 2px 8px rgba(37,99,235,0.10)', cursor:'pointer'}} onClick={() => navigate('/signup')}>Get Started</button>
         </div>
       </header>
-    <div className="landing-main" style={{minHeight:'100vh', width:'100vw', background:'#f6fcfd', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'flex-start', padding:'3rem 0', boxSizing:'border-box'}}>
+  <div className="landing-main fade-in" style={{minHeight:'100vh', width:'100vw', background:'#f6fcfd', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'flex-start', padding:'3rem 0', boxSizing:'border-box'}}>
         {/* Hero Section and Image Side-by-Side */}
-  <div className="landing-hero-row" style={{width:'100%', maxWidth:'1200px', margin:'0 auto', display:'flex', alignItems:'center', justifyContent:'center', gap:'3.5rem', padding:'3.5rem 4rem', background:'#fff', borderRadius:'2rem', boxShadow:'0 8px 32px rgba(34,197,94,0.08)', boxSizing:'border-box'}}>
+  <div className="landing-hero-row fade-in" style={{width:'100%', maxWidth:'1200px', margin:'0 auto', display:'flex', alignItems:'center', justifyContent:'center', gap:'3.5rem', padding:'3.5rem 4rem', background:'#fff', borderRadius:'2rem', boxShadow:'0 8px 32px rgba(34,197,94,0.08)', boxSizing:'border-box'}}>
         <div className="landing-left" style={{flex:'1', maxWidth:'600px'}}>
           <h1 className="landing-title" style={{fontSize:'2.7rem', fontWeight:'bold', marginBottom:'1.2rem'}}>
             Save Lives Through <span className="landing-organ" style={{color:'#22c55e'}}>Organ</span> & <span className="landing-blood" style={{color:'#ef4444'}}>Blood</span> Donation
@@ -27,10 +29,10 @@ const LandingPage = () => {
             Join our community of heroes who make the ultimate gift of life possible. Every donation can save up to 8 lives and enhance the lives of countless others.
           </p>
           <div className="landing-buttons" style={{display:'flex', gap:'1.5rem'}}>
-            <button className="donor-btn" style={{fontSize:'1.15rem', padding:'1rem 2.2rem', borderRadius:'1.2rem', background:'#22c55e', color:'#fff', fontWeight:'bold', border:'none', boxShadow:'0 4px 16px rgba(34,197,94,0.12)'}} onClick={() => navigate('/signup')}>
+            <button className="donor-btn fade-in" style={{fontSize:'1.15rem', padding:'1rem 2.2rem', borderRadius:'1.2rem', background:'#22c55e', color:'#fff', fontWeight:'bold', border:'none', boxShadow:'0 4px 16px rgba(34,197,94,0.12)'}} onClick={() => navigate('/signup')}>
               <span className="btn-icon" style={{fontSize:'1.2rem', marginRight:'0.7rem'}}>&#9829;</span> Become a Donor
             </button>
-            <button className="learn-btn" style={{fontSize:'1.15rem', padding:'1rem 2.2rem', borderRadius:'1.2rem', background:'#fff', color:'#1e293b', fontWeight:'bold', border:'1.5px solid #e5e7eb', boxShadow:'0 4px 16px rgba(34,197,94,0.08)'}} onClick={() => navigate('/login')}>Learn More</button>
+            <button className="learn-btn fade-in" style={{fontSize:'1.15rem', padding:'1rem 2.2rem', borderRadius:'1.2rem', background:'#fff', color:'#1e293b', fontWeight:'bold', border:'1.5px solid #e5e7eb', boxShadow:'0 4px 16px rgba(34,197,94,0.08)', cursor:'pointer'}} onClick={() => navigate('/login')}>Learn More</button>
           </div>
         </div>
         <div className="landing-right" style={{flex:'1', display:'flex', justifyContent:'center'}}>
@@ -46,8 +48,39 @@ const LandingPage = () => {
           </div>
         </div>
       </div>
+          {/* Two Images & Info Section Below Hero, Above Why Donation Matters */}
+          <section style={{width:'100%', maxWidth:'1200px', margin:'2.5rem auto 0 auto', padding:'2rem 0', background:'#f9fafb', borderRadius:'2rem', boxShadow:'0 8px 32px rgba(37,99,235,0.10)', boxSizing:'border-box', display:'flex', flexWrap:'wrap', flexDirection:'row', gap:'2.5rem', justifyContent:'center', alignItems:'center'}}>
+              <div style={{width:'100%', display:'flex', flexDirection:'column', gap:'2.5rem'}}>
+                {/* Lifesaver Card - Side by Side */}
+                <div style={{width:'100%', maxWidth:'900px', margin:'0 auto', background:'#f6fcfd', borderRadius:'1.5rem', boxShadow:'0 4px 24px rgba(34,197,94,0.08)', display:'flex', flexDirection:'row', alignItems:'center', padding:'2.2rem 2rem', border:'1px solid #e0e7ef', gap:'2.5rem'}}>
+                  <img src={donorImg} alt="Donor" style={{width:'200px', height:'200px', objectFit:'cover', borderRadius:'1.2rem', boxShadow:'0 4px 16px rgba(34,197,94,0.15)', border:'6px solid #fff'}} />
+                  <div style={{flex:'1', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'flex-start'}}>
+                    <div style={{fontWeight:'bold', color:'#2563eb', fontSize:'1.7rem', marginBottom:'0.7rem', letterSpacing:'0.5px'}}>Be a Lifesaver</div>
+                    <div style={{color:'#334155', fontSize:'1.15rem', marginBottom:'1.2rem', lineHeight:'1.7', fontWeight:'400'}}>
+                      Your donation brings hope and healing.<br />
+                      You can change lives and give families a second chance.<br />
+                      <span style={{color:'#22c55e', fontWeight:'500'}}>One donor can save up to 8 lives.</span>
+                    </div>
+                    <button style={{background:'#22c55e', color:'#fff', border:'none', borderRadius:'1rem', padding:'0.7rem 2rem', fontWeight:'bold', fontSize:'1.08rem', boxShadow:'0 2px 8px rgba(34,197,94,0.10)', cursor:'pointer', marginTop:'0.5rem'}}>Become a Donor</button>
+                  </div>
+                </div>
+                {/* Awareness Card - Side by Side */}
+                <div style={{width:'100%', maxWidth:'900px', margin:'0 auto', background:'#f9fafb', borderRadius:'1.5rem', boxShadow:'0 4px 24px rgba(239,68,68,0.08)', display:'flex', flexDirection:'row', alignItems:'center', padding:'2.2rem 2rem', border:'1px solid #e0e7ef', gap:'2.5rem'}}>
+                  <img src={awarenessImg} alt="Awareness" style={{width:'200px', height:'200px', objectFit:'cover', borderRadius:'1.2rem', boxShadow:'0 4px 16px rgba(239,68,68,0.15)', border:'6px solid #fff'}} />
+                  <div style={{flex:'1', display:'flex', flexDirection:'column', justifyContent:'center', alignItems:'flex-start'}}>
+                    <div style={{fontWeight:'bold', color:'#ef4444', fontSize:'1.7rem', marginBottom:'0.7rem', letterSpacing:'0.5px'}}>Spread Awareness</div>
+                    <div style={{color:'#334155', fontSize:'1.15rem', marginBottom:'1.2rem', lineHeight:'1.7', fontWeight:'400'}}>
+                      Sharing knowledge inspires others.<br />
+                      Help build a caring, informed community.<br />
+                      <span style={{color:'#ef4444', fontWeight:'500'}}>Your voice can save lives.</span>
+                    </div>
+                    <button style={{background:'#ef4444', color:'#fff', border:'none', borderRadius:'1rem', padding:'0.7rem 2rem', fontWeight:'bold', fontSize:'1.08rem', boxShadow:'0 2px 8px rgba(239,68,68,0.10)', cursor:'pointer', marginTop:'0.5rem'}}>Spread the Word</button>
+                  </div>
+                </div>
+              </div>
+          </section>
       {/* Donation Matters Section Below Hero */}
-  <section className="donation-matters-section" style={{width:'100%', maxWidth:'1200px', margin:'2.5rem auto 0 auto', padding:'2rem 0', background:'#fff', borderRadius:'2rem', boxShadow:'0 8px 32px rgba(34,197,94,0.08)', boxSizing:'border-box'}}>
+  <section className="donation-matters-section fade-in" style={{width:'100%', maxWidth:'1200px', margin:'2.5rem auto 0 auto', padding:'2rem 0', background:'#fff', borderRadius:'2rem', boxShadow:'0 8px 32px rgba(34,197,94,0.08)', boxSizing:'border-box'}}>
         <h2 className="donation-matters-title" style={{textAlign:'center', fontSize:'2.2rem', fontWeight:'bold', marginBottom:'1.2rem', color:'black'}}>Why Your Donation Matters</h2>
         <p className="donation-matters-desc" style={{textAlign:'center', fontSize:'1.15rem', color:'#334155', marginBottom:'2.2rem'}}>
           Every day, thousands of people wait for life-saving organ transplants and blood transfusions. Your generous donation can be the miracle they're hoping for.
@@ -87,13 +120,24 @@ const LandingPage = () => {
           </div>
         </div>
         <div className="donation-matters-cta" style={{display:'flex', justifyContent:'center'}}>
-          <button className="donation-cta-btn" style={{fontSize:'1.15rem', padding:'1rem 2.5rem', borderRadius:'1.2rem', background:'linear-gradient(90deg,#22c55e 60%,#2563eb 100%)', color:'#fff', fontWeight:'bold', border:'none', boxShadow:'0 4px 16px rgba(34,197,94,0.12)'}} onClick={() => navigate('/signup')}>
+          <button className="donation-cta-btn fade-in" style={{fontSize:'1.15rem', padding:'1rem 2.5rem', borderRadius:'1.2rem', background:'linear-gradient(90deg,#22c55e 60%,#2563eb 100%)', color:'#fff', fontWeight:'bold', border:'none', boxShadow:'0 4px 16px rgba(34,197,94,0.12)'}} onClick={() => navigate('/signup')}>
             <span className="donation-cta-icon" style={{fontSize:'1.2rem', marginRight:'0.7rem'}}>🔗</span> Join Our Mission Today
           </button>
         </div>
       </section>
     </div>
       <style>{`
+        .fade-in {
+          opacity: 0;
+          transform: translateY(30px);
+          animation: fadeInUp 1s ease forwards;
+        }
+        @keyframes fadeInUp {
+          to {
+            opacity: 1;
+            transform: none;
+          }
+        }
         @media (max-width: 768px) {
           .landing-header {
             flex-direction: column !important;
