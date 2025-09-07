@@ -205,6 +205,29 @@ export async function registerOrganDonation(req, res) {
         createdAt: new Date()
       });
       await organDonation.save();
+      // Also update Donor collection for status page
+      const donorUser = await User.findOne({ email });
+      if (donorUser) {
+        let donorDoc = await Donor.findOne({ user: donorUser._id });
+        if (donorDoc) {
+          donorDoc.organsPledged = Array.isArray(pledge) ? pledge : [pledge];
+          donorDoc.donationType = mappedDonationType;
+          await donorDoc.save();
+        } else {
+          donorDoc = new Donor({
+            user: donorUser._id,
+            name,
+            email,
+            organsPledged: Array.isArray(pledge) ? pledge : [pledge],
+            donationType: mappedDonationType,
+            bloodType: bloodType,
+            location: city,
+            phone,
+            createdAt: new Date()
+          });
+          await donorDoc.save();
+        }
+      }
       // Route pledges to hospital/organization
       // Get all hospital and organization emails
       const hospitals = await User.find({ category: 'Hospital' });
@@ -212,7 +235,7 @@ export async function registerOrganDonation(req, res) {
       const organizations = await User.find({ category: 'Organization' });
       const organizationEmails = organizations.map(o => o.email);
 
-      // Email living organ pledges to hospitals
+      // Email living organ pledges to hospitals (no accept/reject options)
       if ((mappedDonationType === 'before_death' && pledge.length) || (mappedDonationType === 'both' && livingOrgans.length)) {
         const mailOptions = {
           from: GMAIL_USER,
@@ -221,6 +244,19 @@ export async function registerOrganDonation(req, res) {
           text: `Donor: ${name}\nEmail: ${email}\nPhone: ${phone}\nOrgans Pledged (Living): ${(mappedDonationType==='both'?livingOrgans:pledge).join(', ')}\nDonation Type: ${donationType}`
         };
         transporter.sendMail(mailOptions).catch(err => console.error('Hospital email error:', err));
+      }
+      // Send confirmation email to donor
+      if (email) {
+        const donorMailOptions = {
+          from: GMAIL_USER,
+          to: email,
+          subject: 'Organ Donation Registration Confirmation',
+          text: `Dear ${name},\n\nThank you for registering as a living organ donor. Your pledge has been received.\n\nDetails:\n- Name: ${name}\n- Email: ${email}\n- Phone: ${phone}\n- Organs Pledged: ${Array.isArray(pledge) ? pledge.join(', ') : pledge}\n- Donation Type: ${donationType}\n\nWe appreciate your life-saving commitment!\n\nOrganDonation Team (+91 7207476697)`
+        };
+        console.log('Sending donor confirmation email to:', email);
+        transporter.sendMail(donorMailOptions)
+          .then(info => console.log('Donor confirmation email sent:', info.response))
+          .catch(err => console.error('Donor confirmation email error:', err));
       }
       // Email after-death organ pledges to organizations
       if ((mappedDonationType === 'after_death' && pledge.length) || (mappedDonationType === 'both' && deceasedOrgans.length)) {

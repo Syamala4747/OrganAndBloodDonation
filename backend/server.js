@@ -25,6 +25,7 @@ import supportRoutes from './routes/supportRoutes.js';
 import organDonationRoutes from './routes/organDonationRoutes.js';
 import donorNotificationRoutes from './routes/donorNotificationRoutes.js';
 import chatbotRoutes from './routes/chatbotRoutes.js';
+import donorRequestRoutes from './routes/donorRequestRoutes.js';
 
 // API routes
 
@@ -38,6 +39,7 @@ app.use('/api/organ-donation', organDonationRoutes);
 app.use('/api/hospital', hospitalRoutes);
 app.use('/api/organization', organizationRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/donor-request', donorRequestRoutes);
 app.use('/api/support', supportRoutes);
 app.use('/api/chatbot', chatbotRoutes);
 app.use('/api/donor-notifications', donorNotificationRoutes);

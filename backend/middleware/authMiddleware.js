@@ -17,6 +17,7 @@ const protect = async (req, res, next) => {
   }
 };
 
+
 const adminOnly = (req, res, next) => {
   if (req.user && req.user.category === 'Admin') {
     next();
@@ -25,4 +26,20 @@ const adminOnly = (req, res, next) => {
   }
 };
 
-export { protect, adminOnly };
+const protectDonor = [protect, (req, res, next) => {
+  if (req.user && req.user.category === 'Donor') {
+    next();
+  } else {
+    res.status(403).json({ message: 'Donor access required' });
+  }
+}];
+
+const protectHospital = [protect, (req, res, next) => {
+  if (req.user && req.user.category === 'Hospital') {
+    next();
+  } else {
+    res.status(403).json({ message: 'Hospital access required' });
+  }
+}];
+
+export { protect, adminOnly, protectDonor, protectHospital };

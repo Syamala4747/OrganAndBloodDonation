@@ -43,7 +43,6 @@ const DonorSidebar = ({ active }) => {
               <span style={{position:'absolute',right:'-10px',top:'-8px',background:'#ef4444',color:'#fff',borderRadius:'50%',padding:'0.2em 0.6em',fontSize:'0.95em',fontWeight:'bold'}}>{unreadCount}</span>
             )}
           </li>
-          <li className={active === 'profile' ? 'active' : ''} onClick={()=>navigate('/donor/profile')} style={{cursor:'pointer'}}><span>👤</span> Profile</li>
           <li className={active === 'support' ? 'active' : ''} onClick={()=>navigate('/donor/support')} style={{cursor:'pointer'}}><span>📩</span> Contact & Support</li>
           <li onClick={()=>navigate('/signup')} style={{cursor:'pointer'}}><span>⏏️</span> Logout</li>
         </ul>

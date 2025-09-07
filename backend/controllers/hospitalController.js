@@ -28,6 +28,7 @@ export const uploadHospitalProof = async (req, res) => {
 import Hospital from '../models/Hospital.js';
 import Donor from '../models/Donor.js';
 import User from '../models/User.js';
+import nodemailer from 'nodemailer';
 
 // Get hospital profile
 export const getHospitalProfile = async (req, res) => {
@@ -99,7 +100,27 @@ export const requestDonation = async (req, res) => {
       organ,
       actionRequired: true // flag for frontend to show accept/reject
     });
-    res.json({ message: 'Donation requested and donor notified.' });
+
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_PASS
+      }
+    });
+    const mailOptions = {
+      from: 'lifeshare4747@gmail.com',
+      to: donor.email,
+      subject: `Organ Donation Request for ${organ}`,
+      text: `Dear Donor,\n\nYou have received a new organ donation request for '${organ}' from the hospital below.${hospitalInfo}\n\nPlease review the request and respond by accepting or rejecting. Thank you for your support!`
+    };
+    try {
+      await transporter.sendMail(mailOptions);
+    } catch (emailErr) {
+      console.error('Failed to send donor request email:', emailErr);
+    }
+
+    res.json({ message: 'Donation requested, donor notified, and email sent.' });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
