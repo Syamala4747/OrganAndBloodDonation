@@ -59,11 +59,35 @@ const AdminApprovals = () => {
         ) : (
           <div className="approvals-list" style={{display:'flex', gap:'2rem', flexWrap:'wrap', marginTop:'2rem'}}>
             {pending.map((item, idx) => (
-              <div key={item._id || idx} style={{flex:'1', minWidth:'260px', background:'rgba(240,255,244,0.85)', borderRadius:'1.2rem', boxShadow:'0 2px 12px rgba(34,197,94,0.08)', padding:'2rem 1.2rem', textAlign:'center'}}>
+              <div key={item._id || idx} style={{flex:'1', minWidth:'320px', background:'rgba(240,255,244,0.85)', borderRadius:'1.2rem', boxShadow:'0 2px 12px rgba(34,197,94,0.08)', padding:'2rem 1.2rem', textAlign:'left'}}>
                 <div style={{fontWeight:'bold', fontSize:'1.2rem', color:'#16a34a', marginBottom:'0.7rem'}}>{item.name || item.hospitalName || item.organizationName}</div>
-                <div style={{fontSize:'1.05rem', color:'#222', marginBottom:'0.5rem'}}>{item.email}</div>
-                <div style={{fontSize:'1rem', color:'#334155'}}>{item.category}</div>
-                <div style={{marginTop:'1rem'}}>
+                <div style={{fontSize:'1.05rem', color:'#222', marginBottom:'0.5rem'}}><b>Email:</b> {item.email}</div>
+                <div style={{fontSize:'1rem', color:'#334155', marginBottom:'0.5rem'}}><b>Category:</b> {item.category}</div>
+                {item.category === 'Hospital' && (
+                  <div style={{marginBottom:'0.5rem'}}>
+                    <div><b>License/Registration:</b> {item.licenseId || item.registrationNumber}</div>
+                    <div><b>Address:</b> {item.address}</div>
+                    <div><b>Contact:</b> {item.contact}</div>
+                    {item.verificationDocs && item.verificationDocs.length > 0 && (
+                      <div><b>Proof of Evidence:</b> {item.verificationDocs.map((doc, i) => (
+                        <a key={i} href={`http://localhost:5000/uploads/${doc.replace(/^uploads\//, '')}`} target="_blank" rel="noopener noreferrer" style={{color:'#2563eb',textDecoration:'underline',marginRight:'1rem'}}>View/Download</a>
+                      ))}</div>
+                    )}
+                  </div>
+                )}
+                {item.category === 'Organization' && (
+                  <div style={{marginBottom:'0.5rem'}}>
+                    <div><b>Type:</b> {item.type || item.orgType}</div>
+                    <div><b>Address:</b> {item.address}</div>
+                    <div><b>Contact:</b> {item.contact}</div>
+                    {item.verificationDocs && item.verificationDocs.length > 0 && (
+                      <div><b>Proof of Evidence:</b> {item.verificationDocs.map((doc, i) => (
+                        <a key={i} href={`http://localhost:5000/uploads/${doc.replace(/^uploads\//, '')}`} target="_blank" rel="noopener noreferrer" style={{color:'#2563eb',textDecoration:'underline',marginRight:'1rem'}}>View/Download</a>
+                      ))}</div>
+                    )}
+                  </div>
+                )}
+                <div style={{marginTop:'1rem', textAlign:'center'}}>
                   <button className="approve-btn" onClick={()=>handleAction(item._id,'approve')}>Approve</button>
                   <button className="reject-btn" onClick={()=>handleAction(item._id,'reject')}>Reject</button>
                 </div>

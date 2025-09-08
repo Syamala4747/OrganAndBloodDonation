@@ -124,7 +124,7 @@ const HospitalLivingDonors = () => {
                       <div style={{width:'130px',height:'100%',minHeight:'220px',background:'#f3f4f6',borderRadius:'1rem',boxShadow:'0 1px 4px #e0e7ef',overflow:'hidden',display:'flex',alignItems:'center',justifyContent:'center',marginRight:'1rem'}}>
                         {donor.photo && donor.photo !== 'undefined' && donor.photo !== '' ? (
                           <img
-                            src={`http://localhost:5000/uploads/${donor.photo}`}
+                            src={`http://localhost:5000/uploads/${donor.photo?.replace(/^uploads\//, '')}`}
                             alt="Donor Photo"
                             style={{width:'120px',height:'210px',borderRadius:'0.7rem',objectFit:'cover'}}
                             onError={e => { e.target.onerror=null; e.target.src='https://ui-avatars.com/api/?name=Donor&background=f3f4f6&color=222&size=120'; }}
@@ -149,7 +149,7 @@ const HospitalLivingDonors = () => {
                         }</div>
                         {donor.medicalCertificate && donor.medicalCertificate !== 'undefined' && donor.medicalCertificate !== '' ? (
                           <div style={{marginTop:'0.1rem',fontSize:'0.97rem'}}>
-                            <b>Medical Certificate:</b> <a href={`http://localhost:5000/uploads/${donor.medicalCertificate}`} target="_blank" rel="noopener noreferrer" style={{color:'#2563eb',textDecoration:'underline'}}>View/Download</a>
+                            <b>Medical Certificate:</b> <a href={`http://localhost:5000/uploads/${donor.medicalCertificate?.replace(/^uploads\//, '')}`} target="_blank" rel="noopener noreferrer" style={{color:'#2563eb',textDecoration:'underline'}}>View/Download</a>
                           </div>
                         ) : (
                           <div style={{marginTop:'0.1rem',color:'#f87171',fontSize:'0.97rem'}}><b>Medical Certificate:</b> Not uploaded</div>

@@ -48,7 +48,7 @@ const OrgProfile = () => {
               <div style={{marginBottom:'1.2rem'}}><b>Created At:</b> {new Date(org.createdAt).toLocaleString()}</div>
               {org.verificationDocs && org.verificationDocs.length > 0 && (
                 <div style={{marginBottom:'1.2rem'}}><b>Verification Documents:</b> {org.verificationDocs.map((doc, i) => (
-                  <a key={i} href={`http://localhost:5000/uploads/${doc}`} target="_blank" rel="noopener noreferrer" style={{color:'#2563eb',textDecoration:'underline',marginRight:'1rem'}}>View/Download</a>
+                  <a key={i} href={`http://localhost:5000/uploads/${doc.replace(/^uploads\//, '')}`} target="_blank" rel="noopener noreferrer" style={{color:'#2563eb',textDecoration:'underline',marginRight:'1rem'}}>View/Download</a>
                 ))}</div>
               )}
             </div>
