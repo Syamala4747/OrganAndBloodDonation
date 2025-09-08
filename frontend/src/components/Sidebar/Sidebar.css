@@ -320,14 +320,11 @@
   color: #fff !important;
   border-bottom: 1px solid rgba(255,255,255,0.1);
   }
-  .admin-mobile-menu li a {
+  .admin-mobile-menu li {
+    padding: 0.8rem 0;
+    font-size: 1.1rem;
     color: #fff !important;
-    font-weight: bold;
-  }
-  .admin-mobile-menu li span,
-  .admin-mobile-menu li svg {
-    color: #fff !important;
-  }
+    border-bottom: 1px solid rgba(255,255,255,0.1);
   }
   .admin-mobile-menu li:last-child {
     border-bottom: none;
