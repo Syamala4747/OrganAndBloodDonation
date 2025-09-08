@@ -85,9 +85,10 @@ export const requestSignup = async (req, res) => {
   try {
     const { category } = req.body;
     // File upload: req.file (multer)
-    let proofPath = '';
+    let proofFilename = '';
     if (req.file) {
-      proofPath = req.file.path;
+      // Save only the filename, not the full path
+      proofFilename = req.file.filename || req.file.path.split('uploads/').pop();
     }
     if (category === 'Hospital') {
       // Hospital signup
@@ -103,7 +104,7 @@ export const requestSignup = async (req, res) => {
         address,
         contact: contactNumber,
         status: 'PENDING',
-        verificationDocs: proofPath ? [proofPath] : []
+        verificationDocs: proofFilename ? [proofFilename] : []
       });
       return res.status(201).json({ user, hospital });
     } else if (category === 'Organization') {
